@@ -1,0 +1,938 @@
+/* Home Viva — portal de legado */
+
+body[data-page="home"].home-opening-active {
+  overflow: hidden;
+}
+
+body[data-page="home"]:not(.portal-active) .header {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+}
+
+body[data-page="home"].portal-active .header {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s, background 0.35s ease;
+  background: rgba(9, 9, 9, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(212, 175, 55, 0.08);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 10001;
+  padding: 10px 18px;
+  background: var(--color-gold);
+  color: #090909;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ---- Abertura cinematográfica ---- */
+.home-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090909;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.home-opening.is-leaving {
+  opacity: 0;
+}
+
+.home-opening.is-dismissed {
+  display: none;
+}
+
+.home-opening__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.home-opening__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom, rgba(9,9,9,0.2) 0%, rgba(9,9,9,0.5) 45%, rgba(9,9,9,0.92) 100%);
+  pointer-events: none;
+}
+
+.home-opening__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  display: block;
+  animation: homeOpeningFade 2.4s ease forwards;
+}
+
+.home-opening__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 24px;
+  max-width: 720px;
+  margin-top: -4vh;
+  animation: homeOpeningContent 1.8s ease 0.4s both;
+}
+
+.home-opening__words {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.home-opening__word {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--color-white);
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  opacity: 0;
+  animation: homeWordIn 0.8s ease forwards;
+}
+
+.home-opening__word:nth-child(1) { animation-delay: 0.6s; }
+.home-opening__word:nth-child(2) { animation-delay: 1s; color: var(--color-gold); }
+.home-opening__word:nth-child(3) { animation-delay: 1.4s; }
+
+.home-opening__subtitle {
+  color: var(--color-gray);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  opacity: 0;
+  animation: homeWordIn 0.8s ease 1.8s forwards;
+}
+
+.home-opening__enter {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.home-opening__enter.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.home-opening__file-hint {
+  margin-top: 36px;
+  padding: 18px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-opening__file-hint p {
+  color: var(--color-gray);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.home-opening__file-hint strong {
+  color: var(--color-white);
+}
+
+.home-opening__file-hint code {
+  display: block;
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  color: var(--color-gold);
+  font-size: 0.82rem;
+}
+
+.home-opening__file-hint a {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+@keyframes homeOpeningFade {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes homeOpeningContent {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes homeWordIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- Portal content ---- */
+body[data-page="home"]:not(.portal-active) .portal-content {
+  opacity: 0;
+}
+
+body[data-page="home"].portal-active .portal-content {
+  opacity: 1;
+}
+
+body[data-page="home"].portal-active #main-content {
+  padding-top: 0;
+}
+
+.home-section__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.home-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-white);
+  margin-bottom: 32px;
+}
+
+.home-section__cta {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: opacity 0.25s;
+}
+
+.home-section__cta:hover {
+  opacity: 0.8;
+}
+
+/* ---- Hoje na História ---- */
+.home-hoje {
+  padding: 0 0 56px;
+}
+
+.home-hoje__card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  background:
+    linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, rgba(255,255,255,0.02) 50%, transparent 100%),
+    var(--color-bg-card, #111);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.home-hoje__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
+
+.home-hoje__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-hoje__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 10px;
+}
+
+.home-hoje__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.home-hoje__date {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-white);
+}
+
+.home-hoje__note {
+  font-size: 0.68rem;
+  color: var(--color-gray);
+  letter-spacing: 0.06em;
+}
+
+.home-hoje__year {
+  font-size: 0.82rem;
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.home-hoje__text {
+  color: var(--color-gray);
+  line-height: 1.75;
+  margin-bottom: 14px;
+  max-width: 56ch;
+}
+
+.home-hoje__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-white);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color 0.25s, gap 0.25s;
+}
+
+.home-hoje__link:hover {
+  color: var(--color-gold);
+  gap: 12px;
+}
+
+.home-hoje__link i {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .home-hoje__card {
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+}
+
+/* ---- Próxima ministração ---- */
+#proxima-ministracao {
+  padding-top: 16px;
+}
+
+.home-evento__more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.home-evento__more:hover {
+  text-decoration: underline;
+}
+
+/* ---- Agenda completa ---- */
+.home-agenda {
+  padding: 0 0 80px;
+  background: transparent;
+}
+
+.home-agenda .home-section__label,
+.home-agenda .home-section__title {
+  text-align: center;
+}
+
+.home-agenda .home-section__title {
+  margin-bottom: 40px;
+}
+
+.home-agenda__cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.home-evento {
+  padding: 40px 0 80px;
+}
+
+.home-evento__card {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  padding: 44px 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background:
+    linear-gradient(160deg, rgba(212, 175, 55, 0.05) 0%, transparent 55%),
+    rgba(255, 255, 255, 0.02);
+}
+
+.home-evento__card--empty {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 52px 48px 48px;
+  gap: 28px;
+}
+
+.home-evento__icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+
+.home-evento__date-block {
+  flex-shrink: 0;
+  text-align: center;
+  min-width: 88px;
+  padding: 16px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.home-evento__day {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.home-evento__month {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: capitalize;
+  color: var(--color-gold);
+  margin-top: 4px;
+}
+
+.home-evento__year {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-gray);
+  margin-top: 2px;
+}
+
+.home-evento__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-evento__card--empty .home-evento__body {
+  align-items: center;
+  gap: 14px;
+  max-width: 480px;
+}
+
+.home-evento__city {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-white);
+  margin: 6px 0 8px;
+}
+
+.home-evento__title {
+  color: var(--color-gray);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.home-evento__empty {
+  color: var(--color-white);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  margin: 4px 0 0;
+}
+
+.home-evento__hint {
+  color: var(--color-gray);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 8px 0 0;
+}
+
+.home-evento__card--empty .btn--ghost {
+  margin-top: 20px;
+}
+
+.btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: transparent;
+  color: var(--color-white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.btn--ghost:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+@media (max-width: 640px) {
+  .home-evento {
+    padding: 32px 0 64px;
+  }
+
+  .home-evento__card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 36px 24px;
+    gap: 24px;
+  }
+
+  .home-evento__card--empty {
+    padding: 40px 24px 36px;
+  }
+
+  .home-evento__date-block {
+    align-self: flex-start;
+  }
+}
+
+/* ---- Linha do tempo horizontal ---- */
+.home-timeline {
+  padding: 64px 24px;
+  background: rgba(255,255,255,0.02);
+  border-top: 1px solid var(--color-gray-dark);
+  border-bottom: 1px solid var(--color-gray-dark);
+}
+
+.home-timeline__track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  overflow-x: auto;
+  padding: 24px 0 32px;
+  scrollbar-width: none;
+}
+
+.home-timeline__track::-webkit-scrollbar {
+  display: none;
+}
+
+.home-timeline__point {
+  position: relative;
+  flex: 1;
+  min-width: 72px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-timeline__year {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--color-gray);
+  transition: color 0.3s, transform 0.3s;
+  z-index: 1;
+}
+
+.home-timeline__point.active .home-timeline__year,
+.home-timeline__point:hover .home-timeline__year {
+  color: var(--color-gold);
+  transform: scale(1.08);
+}
+
+.home-timeline__line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: var(--color-gray-dark);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.home-timeline__chapter {
+  margin-top: 8px;
+}
+
+.home-timeline__card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-dark);
+  background: var(--color-bg-card, #141414);
+}
+
+.home-timeline__card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.home-timeline__card-year {
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-timeline__card h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-white);
+  margin: 8px 0 12px;
+}
+
+.home-timeline__card p {
+  color: var(--color-gray);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.home-timeline__card-link {
+  color: var(--color-gold);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ---- Memorial destaque ---- */
+.home-memorial {
+  padding: 64px 24px;
+}
+
+.home-memorial__card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.home-memorial__visual img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.home-memorial__place {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.home-memorial__church {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.home-memorial__quote {
+  color: var(--color-gray);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.home-memorial__more {
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* ---- Discografia teaser ---- */
+.home-disc {
+  padding: 64px 24px;
+  background: rgba(255,255,255,0.02);
+}
+
+.home-disc__card {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  max-width: 640px;
+}
+
+.home-disc__card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+
+.home-disc__tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.home-disc__title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-white);
+  margin: 8px 0 4px;
+}
+
+.home-disc__meta {
+  color: var(--color-gray);
+  margin-bottom: 16px;
+}
+
+.home-disc__actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ---- Videoteca teaser ---- */
+.home-videos {
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.home-videos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.home-videos__item {
+  position: relative;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.home-videos__item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.home-videos__item:hover img {
+  transform: scale(1.05);
+}
+
+.home-videos__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.home-videos__play i {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #cc0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  padding-left: 3px;
+}
+
+.home-videos__item:hover .home-videos__play {
+  opacity: 1;
+}
+
+.home-videos__title {
+  display: block;
+  padding: 10px 4px;
+  font-size: 0.82rem;
+  color: var(--color-gray);
+  line-height: 1.35;
+}
+
+.home-videos__cta {
+  margin-top: 8px;
+}
+
+/* ---- Frase final (contemplação) ---- */
+.home-legacy {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-legacy__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-legacy__photo::after {
+  content: '';
+}
+
+.home-legacy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.62);
+  z-index: 1;
+}
+
+.home-legacy__quote {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 48px 24px;
+  max-width: 640px;
+  margin: 0;
+  border: none;
+}
+
+.home-legacy__quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--color-white);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.home-legacy__quote cite {
+  font-style: normal;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+
+.portal-load-error {
+  padding: 20px 24px;
+  margin: 24px auto 0;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--color-gray);
+  text-align: center;
+  max-width: 640px;
+}
+
+#lancamentos {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  scroll-margin-top: calc(var(--header-height) + 12px);
+}
+
+body[data-page="home"].portal-active #lancamentos {
+  padding-top: var(--header-height);
+}
+
+#lancamentos .videoteca-cinema__info--compact {
+  padding-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .home-opening__photo {
+    object-position: center 28%;
+  }
+
+  .home-timeline__card,
+  .home-memorial__card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .home-disc__card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .home-videos__grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-timeline__point {
+    min-width: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-opening__photo,
+  .home-opening__content,
+  .home-opening__word,
+  .home-opening__subtitle {
+    animation: none;
+    opacity: 1;
+  }
+
+  .home-opening__enter {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

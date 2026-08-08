@@ -1,0 +1,167 @@
+{
+  "videos": [
+    {
+      "titulo": "Não Vai Parar",
+      "youtube": "https://www.youtube.com/watch?v=1zlCHxJHG_c",
+      "descricao": "Clipe oficial — Elias Silva. Uma mensagem de perseverança e fé que não se detém diante dos desafios.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "destaque": true,
+      "data": "2026-06-01",
+      "album": "Não Vai Parar (Single)",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Teu Amor É Infinito",
+      "youtube": "https://www.youtube.com/watch?v=PlKtFfpkf2Y",
+      "descricao": "Clipe oficial — Elias & Léia Silva. Louvor sobre o amor infinito de Deus, ministrado em dupla.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-06-01",
+      "album": "Teu Amor É Infinito (Single)",
+      "compositor": "Elias Silva & Léia Silva"
+    },
+    {
+      "titulo": "Redenção",
+      "youtube": "https://www.youtube.com/watch?v=wpy85XiINlI",
+      "descricao": "Clipe oficial — Elias & Léia Silva. Louvor sobre a redenção em Cristo, ministrado em dupla.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-08-01",
+      "album": "Redenção (Single)",
+      "compositor": "Elias Silva & Léia Silva"
+    },
+    {
+      "titulo": "Vai Prosperar",
+      "youtube": "https://www.youtube.com/watch?v=1X7ELRya8fk",
+      "descricao": "Clássico do repertório — mensagem de fé e confiança de que, em Deus, tudo vai prosperar.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-07-01",
+      "album": "Conte Comigo",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Pensando Bem",
+      "youtube": "https://www.youtube.com/watch?v=wHVY4VyjE4k",
+      "descricao": "Clássico do repertório — louvor sobre a presença de Cristo e a dependência de Deus em cada dia.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-08-01",
+      "album": "Conte Comigo",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Meu Farol",
+      "youtube": "",
+      "descricao": "Clipe oficial — Elias Silva.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-07-01",
+      "album": "Meu Farol (Single)",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Deus Não Falha",
+      "youtube": "",
+      "descricao": "Single oficial do Ministério Elias Silva — mensagem de fé e confiança em Deus.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-01-15",
+      "views": 1200000,
+      "duracao": "4:32",
+      "album": "Deus Não Falha (Single)",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Livres Para Voar",
+      "youtube": "",
+      "descricao": "Clipe oficial — louvor que celebra a liberdade em Cristo.",
+      "ano": 2024,
+      "tipo": "clipe-oficial",
+      "data": "2024-06-01",
+      "views": 850000,
+      "duracao": "5:10",
+      "album": "Livres Para Voar",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Carta do Rei",
+      "youtube": "",
+      "descricao": "Uma canção sobre esperança — um dos hinos mais conhecidos do ministério.",
+      "ano": 2023,
+      "tipo": "clipe-oficial",
+      "data": "2023-03-10",
+      "views": 430000,
+      "duracao": "4:48",
+      "album": "Promessas",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Promessas (Ao Vivo)",
+      "youtube": "",
+      "descricao": "Gravação ao vivo — momento de adoração e entrega.",
+      "ano": 2008,
+      "tipo": "ao-vivo",
+      "data": "2008-11-20",
+      "views": 210000,
+      "duracao": "6:15",
+      "album": "Promessas (Ao Vivo)",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Culto AD Belém — Dourados",
+      "youtube": "",
+      "descricao": "Registro do culto realizado em Dourados/MS — louvor, comunhão e Palavra.",
+      "ano": 2026,
+      "tipo": "ao-vivo",
+      "data": "2026-08-02",
+      "duracao": "1:12:00"
+    },
+    {
+      "titulo": "Congresso de Jovens — Campo Grande",
+      "youtube": "",
+      "descricao": "Registro oficial do congresso — adoração, pregação e testemunhos.",
+      "ano": 2025,
+      "tipo": "congressos",
+      "data": "2025-07-12",
+      "duracao": "2:05:00"
+    },
+    {
+      "titulo": "Vida Feliz",
+      "youtube": "",
+      "descricao": "Clássico do repertório — playback oficial.",
+      "ano": 1986,
+      "tipo": "playback",
+      "data": "1986-01-01",
+      "duracao": "3:55",
+      "album": "Vida Feliz",
+      "compositor": "Elias Silva"
+    },
+    {
+      "titulo": "Sonhos e Projetos",
+      "artista": "Marcos Nogueira",
+      "youtube": "https://youtu.be/WRmRbJD-mNI",
+      "descricao": "Clipe de artista parceiro — publicado no canal oficial como apoio e divulgação.",
+      "ano": 2026,
+      "tipo": "clipes-amigos",
+      "data": "2026-07-01"
+    },
+    {
+      "titulo": "A Espera de um Milagre",
+      "artista": "Marcos Nogueira",
+      "youtube": "https://youtu.be/vCiaIVv7EsE",
+      "descricao": "Clipe de artista parceiro — composição e interpretação de Marcos Nogueira, divulgado no canal oficial.",
+      "ano": 2026,
+      "tipo": "clipes-amigos",
+      "data": "2026-06-01"
+    }
+  ]
+}

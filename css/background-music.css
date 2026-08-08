@@ -1,0 +1,61 @@
+/* ---- Música ambiente ---- */
+.bg-music-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: calc(32px + 48px + 14px + 48px + 12px);
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--color-gray, #999);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.bg-music-toggle:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--color-white, #fff);
+}
+
+.bg-music-toggle.is-playing {
+  border-color: rgba(212, 175, 55, 0.55);
+  color: var(--color-gold, #d4af37);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+}
+
+.bg-music-toggle.is-playing i {
+  animation: bg-music-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes bg-music-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(0.92); }
+}
+
+@media (max-width: 480px) {
+  .bg-music-toggle {
+    right: 12px;
+    bottom: calc(20px + 52px + 12px + 42px + 12px);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .bg-music-toggle__label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-music-toggle.is-playing i {
+    animation: none;
+  }
+}

@@ -1,0 +1,3 @@
+/memorial/:slug    /memorial.html?evento=:slug    200
+/memoriais/:slug    /memorial.html?evento=:slug    200
+/eventos/*    /memoriais.html    301

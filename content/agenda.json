@@ -1,0 +1,4 @@
+{
+  "_info": "A agenda é calculada automaticamente a partir de content/eventos.json (eventos com data futura). Este arquivo existe apenas como referência.",
+  "fonte": "content/eventos.json"
+}

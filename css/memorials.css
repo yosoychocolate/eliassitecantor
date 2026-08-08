@@ -1,0 +1,701 @@
+/* ============================================
+   Memoriais do Ministério
+   ============================================ */
+
+.page-hero {
+  position: relative;
+  padding: calc(var(--header-height) + 60px) 0 80px;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-gray-dark);
+  text-align: center;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
+  opacity: 0.4;
+}
+
+.page-hero__label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.page-hero__desc {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--color-gray);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 24px;
+  color: var(--color-gray);
+}
+
+.breadcrumb a {
+  color: var(--color-gold);
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Timeline (Memoriais index) ---- */
+.timeline-section {
+  padding: 80px 0 100px;
+}
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 48px;
+  padding-left: 32px;
+  border-left: 3px solid var(--color-gold);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-gold), var(--color-gray-dark));
+  opacity: 0.4;
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 4px var(--color-bg), 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.timeline__item--soon::before {
+  background: var(--color-gray-dark);
+  box-shadow: 0 0 0 4px var(--color-bg);
+}
+
+.timeline-card {
+  display: block;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  transition: all var(--transition);
+}
+
+a.timeline-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateX(8px);
+  box-shadow: var(--shadow-gold);
+}
+
+.timeline-card__city {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.timeline-card__church {
+  font-size: 0.95rem;
+  color: var(--color-gray-light);
+  margin-bottom: 4px;
+}
+
+.timeline-card__pastor {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.timeline-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+.timeline-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-card__badge {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-gold);
+}
+
+.timeline-card__badge--soon {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-gray);
+}
+
+/* ---- Event Page ---- */
+.event-hero {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-end;
+  padding: calc(var(--header-height) + 40px) 0 60px;
+  background: var(--color-bg-alt) center/cover no-repeat;
+  overflow: hidden;
+}
+
+.event-hero--parallax {
+  background: transparent !important;
+}
+
+.event-hero__parallax-bg {
+  position: absolute;
+  inset: -15% 0 0;
+  background: center/cover no-repeat;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.08);
+}
+
+.event-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-bg) 0%, rgba(9, 9, 9, 0.75) 45%, rgba(9, 9, 9, 0.55) 100%);
+  z-index: 1;
+}
+
+.event-hero::after {
+  content: none;
+}
+
+.event-hero--parallax::after {
+  display: none;
+}
+
+.event-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.event-hero__type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.event-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.event-hero__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-gray-light);
+  max-width: 700px;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.event-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--color-gray-light);
+}
+
+.event-meta__item i {
+  color: var(--color-gold);
+  width: 20px;
+  text-align: center;
+}
+
+.event-section {
+  padding: 80px 0;
+}
+
+.event-section:nth-child(even) {
+  background: var(--color-bg-alt);
+}
+
+.event-section__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-white);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.event-section__title i {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+
+.event-relato {
+  max-width: 760px;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--color-gray);
+  border-left: 3px solid var(--color-gold);
+  padding-left: 28px;
+}
+
+.event-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.event-info-card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.event-info-card i {
+  font-size: 1.3rem;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.event-info-card strong {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+  margin-bottom: 6px;
+}
+
+.event-info-card span {
+  color: var(--color-white);
+  font-size: 0.95rem;
+}
+
+.event-louvores {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.event-louvores li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  color: var(--color-gray-light);
+  font-size: 0.9rem;
+}
+
+.event-louvores li i {
+  color: var(--color-gold);
+}
+
+.event-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.event-video-placeholder {
+  aspect-ratio: 16/9;
+  background: var(--color-bg-card);
+  border: 1px dashed var(--color-gray-dark);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--color-gray);
+  font-size: 0.85rem;
+}
+
+.event-video-placeholder i {
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+.event-gallery-count {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 0.85rem;
+  color: var(--color-gray);
+}
+
+.event-gallery-count strong {
+  color: var(--color-gold);
+}
+
+.event-info-grid--memorial {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.memorial-loading,
+.timeline-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-gray);
+}
+
+.memorial-loading .preloader__logo,
+.timeline-empty i {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.timeline-empty i {
+  font-size: 2.5rem;
+}
+
+.timeline-section__year + .timeline-section__year {
+  margin-top: 64px;
+}
+
+.timeline-card--disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.agenda__empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--color-gray);
+}
+
+.agenda__empty .btn {
+  margin-top: 24px;
+}
+
+.timeline-month {
+  margin-bottom: 48px;
+}
+
+.timeline-month__label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 24px;
+  padding-left: 40px;
+  text-transform: capitalize;
+  opacity: 0.9;
+}
+
+.timeline-month__label::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin-top: 8px;
+  opacity: 0.5;
+}
+
+/* ---- Mapa do Brasil ---- */
+.brazil-map__visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.brazil-map__silhouette {
+  text-align: center;
+  font-size: 8rem;
+  color: rgba(212, 175, 55, 0.15);
+}
+
+.brazil-map__states {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brazil-map__state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.brazil-map__state:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateX(8px);
+}
+
+.brazil-map__dot {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+
+.brazil-map__state small {
+  margin-left: auto;
+  color: var(--color-gray);
+  font-size: 0.75rem;
+}
+
+.brazil-map__panel {
+  display: none;
+  max-width: 480px;
+  margin: 32px auto 0;
+  padding: 28px;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.brazil-map__panel.active {
+  display: block;
+}
+
+.brazil-map__list {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.brazil-map__list li {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 0;
+}
+
+.brazil-map__list a {
+  color: var(--color-gray-light);
+  display: block;
+}
+
+.brazil-map__list a:hover {
+  color: var(--color-gold);
+}
+
+.brazil-map__list small {
+  color: var(--color-gray);
+}
+
+.memorial-city-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gray-light);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.memorial-city-link:hover {
+  color: var(--color-gold);
+}
+
+.lancamento__streams {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0;
+  font-size: 1.4rem;
+}
+
+.lancamento__streams a {
+  color: var(--color-gray);
+  transition: color var(--transition);
+}
+
+.lancamento__streams a:hover {
+  color: var(--color-gold);
+}
+
+.gallery-empty {
+  color: var(--color-gray);
+  text-align: center;
+  padding: 32px;
+}
+
+@media (max-width: 768px) {
+  .brazil-map__visual {
+    grid-template-columns: 1fr;
+  }
+  .brazil-map__silhouette {
+    font-size: 5rem;
+  }
+}
+
+.event-back {
+  text-align: center;
+  padding: 60px 0 100px;
+}
+
+.nav__logo--sub {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline {
+    padding-left: 28px;
+  }
+
+  .timeline__item::before {
+    left: -28px;
+  }
+
+  .event-meta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  a.timeline-card:hover {
+    transform: none;
+  }
+
+  .memoriais-cta__card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+
+  .galeria__filters {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 0.6rem;
+  }
+}
+
+/* ---- Memoriais CTA (home) ---- */
+.memoriais-cta {
+  background: var(--color-bg);
+}
+
+.memoriais-cta__desc {
+  text-align: center;
+  max-width: 560px;
+  margin: -32px auto 48px;
+  color: var(--color-gray);
+}
+
+.memoriais-cta__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius);
+}
+
+.memoriais-cta__date {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.memoriais-cta__info h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin: 8px 0;
+}
+
+.memoriais-cta__info p {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+}

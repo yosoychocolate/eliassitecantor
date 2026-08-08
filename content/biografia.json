@@ -1,0 +1,12 @@
+{
+  "marcos": [
+    { "ano": 1959, "mes": 1, "titulo": "Nascimento", "descricao": "Elias Ferreira da Silva nasce em Rondonópolis, Mato Grosso.", "tipo": "biografia", "icone": "fa-child" },
+    { "ano": 1988, "titulo": "Início no ministério", "descricao": "Trajetória nos corais e ministério local.", "tipo": "biografia", "icone": "fa-music" },
+    { "ano": 2025, "mes": 8, "titulo": "Casamento com Léia Silva", "descricao": "Formação da dupla Elias & Léia Silva.", "tipo": "biografia", "icone": "fa-heart" }
+  ],
+  "versiculos": [
+    { "texto": "Cantarei ao Senhor enquanto eu viver; cantarei louvores ao meu Deus enquanto existir.", "ref": "Salmos 104:33" },
+    { "texto": "Proclamarei o nome do Senhor; engrandecei o nosso Deus.", "ref": "Deuteronômio 32:3" },
+    { "texto": "Louvai ao Senhor! Louvai a Deus no seu santuário!", "ref": "Salmos 150:1" }
+  ]
+}

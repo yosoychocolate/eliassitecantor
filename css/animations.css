@@ -1,0 +1,132 @@
+/* ============================================
+   Animation Utilities
+   ============================================ */
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.reveal-fade {
+  opacity: 0;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Hero: texto sempre visível, sem reveal-up */
+.hero__content,
+.hero__content * {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Parallax layers */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* Glow pulse on gold elements */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.25); }
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Section divider glow */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
+  opacity: 0.3;
+}
+
+.section:first-of-type::before {
+  display: none;
+}
+
+/* Smooth image load */
+img {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+img[data-loading] {
+  opacity: 0;
+}
+
+/* Music card playing animation */
+.music-card.playing .music-card__cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-gold);
+  animation: goldPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Nav overlay for mobile menu */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Form success state */
+.form__success {
+  text-align: center;
+  padding: 40px;
+}
+
+.form__success i {
+  font-size: 3rem;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.form__success h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.form__success p {
+  color: var(--color-gray);
+}

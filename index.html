@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <link rel="canonical" href="https://ministerioeliassilva.com.br/">
+
+  <meta property="og:url" content="https://ministerioeliassilva.com.br/">
+
+  <meta name="twitter:site" content="@ministerioeliassilva">
+
+  <meta name="description" content="Portal oficial do Ministério Elias Silva — mais de 40 anos levando o Evangelho através da música. Legado, memoriais e discografia.">
+
+  <meta name="keywords" content="Ministério Elias Silva, Elias Silva, Léia Silva, música gospel, memoriais, legado">
+
+  <meta name="author" content="Elias Ferreira da Silva">
+
+  <meta property="og:title" content="Ministério Elias Silva | Portal Oficial">
+
+  <meta property="og:description" content="Portal de legado — preservando a história do ministério para as próximas gerações.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:image" content="assets/images/hero-bg.png">
+
+  <title>Ministério Elias Silva | Portal Oficial</title>
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="css/animations.css">
+
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/platform.css">
+  <link rel="stylesheet" href="css/videoteca.css">
+
+  <link rel="stylesheet" href="css/home-viva.css">
+
+  <link rel="stylesheet" href="css/agenda-bot.css">
+
+  <link rel="stylesheet" href="css/background-music.css">
+
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#D4AF37">
+
+</head>
+
+<body data-page="home">
+
+  <a href="#portal-content" class="skip-link">Ir para o conteúdo</a>
+
+
+
+  <div class="preloader" id="preloader">
+
+    <div class="preloader__inner">
+
+      <span class="preloader__logo">ES</span>
+
+      <div class="preloader__bar"><span></span></div>
+
+    </div>
+
+  </div>
+
+
+
+  <header class="header" id="header">
+
+    <nav class="nav container">
+
+      <a href="index.html" class="nav__logo">Ministério Elias Silva</a>
+
+      <div id="global-search"></div>
+
+      <div class="nav__menu" id="nav-menu">
+
+        <ul class="nav__list">
+
+          <li><a href="index.html" class="nav__link active">Home</a></li>
+
+          <li><a href="#agenda" class="nav__link">Agenda</a></li>
+
+          <li><a href="memoriais.html" class="nav__link">Memoriais</a></li>
+
+          <li><a href="discografia.html" class="nav__link">Música</a></li>
+
+          <li><a href="videoteca.html" class="nav__link">Videoteca</a></li>
+
+          <li><a href="#contato" class="nav__link">Contato</a></li>
+
+        </ul>
+
+        <button class="nav__close" id="nav-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+
+      </div>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+
+    </nav>
+
+  </header>
+
+
+
+  <section class="home-opening" id="home-opening" aria-label="Abertura">
+
+    <div class="home-opening__bg" aria-hidden="true">
+      <img class="home-opening__photo" src="assets/images/hero-bg.png" alt="" width="1920" height="1280" fetchpriority="high">
+    </div>
+
+    <div class="home-opening__content">
+
+      <div class="home-opening__words" aria-hidden="true">
+
+        <span class="home-opening__word">Fé.</span>
+
+        <span class="home-opening__word">Louvor.</span>
+
+        <span class="home-opening__word">Esperança.</span>
+
+      </div>
+
+      <p class="home-opening__subtitle">Há mais de 40 anos levando o Evangelho através da música.</p>
+
+      <button type="button" class="btn btn--primary btn--lg home-opening__enter" id="home-enter">Entrar no Portal</button>
+
+    </div>
+
+  </section>
+
+
+
+  <main id="main-content">
+
+    <div id="portal-content" class="portal-content">
+
+      <section class="lancamento-section" id="lancamentos">
+        <div id="videoteca-featured"></div>
+      </section>
+
+      <section id="proxima-ministracao"></section>
+
+      <section class="home-agenda agenda" id="agenda" aria-label="Agenda">
+        <div class="container">
+          <span class="home-section__label">Agenda</span>
+          <h2 class="home-section__title">Próximas ministrações</h2>
+          <div class="agenda__list" id="agenda-list"></div>
+        </div>
+      </section>
+
+      <section id="hoje-historia" aria-label="Hoje na História"></section>
+
+      <section id="linha-tempo"></section>
+
+      <section id="memorial-destaque"></section>
+
+      <section id="discografia-teaser"></section>
+
+      <section id="videoteca-teaser"></section>
+
+      <section id="frase-final"></section>
+
+    </div>
+
+  </main>
+
+
+
+  <footer class="footer footer--legacy" id="contato">
+    <div class="container">
+      <div class="footer-legacy">
+        <div class="footer-legacy__main">
+          <span class="footer-legacy__badge">Portal Oficial</span>
+          <h2 class="footer-legacy__title">Ministério Elias Silva</h2>
+          <p class="footer-legacy__mission">Preservando a história do ministério para as próximas gerações.</p>
+        </div>
+        <div class="footer-legacy__actions">
+          <a href="https://wa.me/5511970472292" id="convite-whatsapp" class="footer-legacy__whatsapp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+          <nav class="footer-legacy__social" aria-label="Redes sociais oficiais">
+            <a href="https://www.facebook.com/CANTORELIASSILVAOFICIAL" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/cantoreliassilvaoficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@cantoreliassilvaoficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@cantoreliassilvaoficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </nav>
+        </div>
+        <p class="footer-legacy__copy">&copy; 2026 Elias Ferreira da Silva</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+
+    <div class="video-modal__overlay"></div>
+
+    <div class="video-modal__content video-modal__content--cinema">
+
+      <button class="video-modal__close" aria-label="Fechar vídeo"><i class="fas fa-times"></i></button>
+
+      <div class="video-modal__layout">
+
+        <div class="video-modal__main">
+
+          <div class="video-modal__iframe-wrap">
+
+            <div id="video-player-host"></div>
+
+            <div id="video-modal-upnext" class="video-modal__upnext" aria-live="polite"></div>
+
+          </div>
+
+          <div class="video-modal__info">
+
+            <h3 id="video-modal-title"></h3>
+
+            <p id="video-modal-desc"></p>
+
+            <div id="video-modal-next"></div>
+
+            <div id="video-modal-related"></div>
+
+          </div>
+
+        </div>
+
+        <aside class="video-modal__aside">
+
+          <div id="video-modal-sheet"></div>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <button class="back-to-top" id="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-chevron-up"></i></button>
+
+
+
+  <script src="js/ministry.js"></script>
+
+  <script src="services/adapters/jsonAdapter.js"></script>
+
+  <script src="services/contentService.js"></script>
+
+  <script src="services/searchService.js"></script>
+
+  <script src="services/analyticsService.js"></script>
+
+  <script src="js/portal/seo.js"></script>
+
+  <script src="js/portal/search-ui.js"></script>
+
+  <script src="js/portal/videoService.js"></script>
+
+  <script src="js/portal/videoModal.js"></script>
+
+  <script src="js/portal/render-helpers.js"></script>
+
+  <script src="js/portal/render-videoteca.js"></script>
+
+  <script src="js/portal/render-home-viva.js"></script>
+
+  <script src="js/portal/render-home.js"></script>
+
+  <script src="services/agendaBotService.js"></script>
+
+  <script src="js/portal/agenda-bot.js"></script>
+
+  <script src="js/portal/background-music.js"></script>
+
+  <script src="js/player.js"></script>
+
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
+
+

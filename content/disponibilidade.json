@@ -1,0 +1,14 @@
+{
+  "_info": "Datas abertas para convite. O assistente oculta automaticamente dias já ocupados em eventos.json.",
+  "aviso": "As datas exibidas representam disponibilidade no calendário do portal e estão sujeitas à confirmação pelo Ministério Elias Silva. A reserva somente é efetivada após confirmação da equipe.",
+  "slots": [
+    { "data": "2026-09-06", "disponivel": true },
+    { "data": "2026-09-13", "disponivel": true },
+    { "data": "2026-09-27", "disponivel": true },
+    { "data": "2026-10-04", "disponivel": true },
+    { "data": "2026-10-18", "disponivel": true },
+    { "data": "2026-10-25", "disponivel": true },
+    { "data": "2026-11-08", "disponivel": true },
+    { "data": "2026-11-22", "disponivel": true }
+  ]
+}

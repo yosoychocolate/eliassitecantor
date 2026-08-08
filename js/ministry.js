@@ -1,0 +1,89 @@
+/**
+ * Ministry — Helpers compartilhados: classificação agenda/memorial, URLs, datas
+ */
+const Ministry = {
+  CATEGORY_GROUPS: {
+    louvor: { label: 'Louvor', match: ['louvor', 'louvor-especial'] },
+    ministeracao: { label: 'Ministração', match: ['ministeracao', 'palavra-adoracao'] },
+    coral: { label: 'Coral', match: ['coral'] },
+    igreja: { label: 'Igreja', match: ['louvor-congregacional', 'igreja'] },
+    infantil: { label: 'Ministério Infantil', match: ['infantil'] },
+    comunhao: { label: 'Comunhão', match: ['bastidores', 'comunhao'] }
+  },
+
+  today() {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  },
+
+  parseDate(dateStr) {
+    if (!dateStr) return null;
+    return new Date(`${dateStr}T12:00:00`);
+  },
+
+  /** memorial = realizado ou data já passou */
+  isMemorial(ev) {
+    if (ev.realizado === true) return true;
+    if (ev.realizado === false) return false;
+    const d = this.parseDate(ev.data);
+    return d ? d < this.today() : false;
+  },
+
+  isAgenda(ev) {
+    return !this.isMemorial(ev);
+  },
+
+  memorialUrl(ev) {
+    if (!ev.slug) return null;
+    return `memorial.html?evento=${ev.slug}`;
+  },
+
+  formatDate(dateStr) {
+    if (!dateStr) return 'Em breve';
+    return this.parseDate(dateStr).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  },
+
+  formatDateShort(dateStr) {
+    if (!dateStr) return 'Em breve';
+    return this.parseDate(dateStr).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+  },
+
+  groupByYear(eventos) {
+    const map = {};
+    eventos.forEach(ev => {
+      const year = ev.data ? ev.data.slice(0, 4) : 'Em breve';
+      if (!map[year]) map[year] = [];
+      map[year].push(ev);
+    });
+    return Object.keys(map)
+      .sort((a, b) => {
+        if (a === 'Em breve') return 1;
+        if (b === 'Em breve') return -1;
+        return Number(b) - Number(a);
+      })
+      .map(year => ({
+        year,
+        eventos: map[year].sort((a, b) => {
+          if (!a.data) return 1;
+          if (!b.data) return -1;
+          return b.data.localeCompare(a.data);
+        })
+      }));
+  },
+
+  galleryGroup(category) {
+    for (const [group, cfg] of Object.entries(this.CATEGORY_GROUPS)) {
+      if (cfg.match.includes(category)) return group;
+    }
+    return category;
+  }
+};

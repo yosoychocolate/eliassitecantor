@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Ministério Elias Silva</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/platform.css">
+</head>
+<body data-page="admin" class="admin-body">
+  <div class="admin-gate" id="admin-gate">
+    <div class="admin-card">
+      <h1>Painel Administrativo</h1>
+      <p>Em breve — login, upload de fotos, publicação de memoriais e músicas sem editar JSON.</p>
+      <p class="admin-note">Arquitetura preparada via <code>ContentService.useAdapter(new ApiDataAdapter(url))</code></p>
+      <a href="../index.html" class="btn btn--outline">← Voltar ao portal</a>
+    </div>
+  </div>
+  <div class="admin-dashboard" id="admin-dashboard" hidden>
+    <h1>Analytics</h1>
+    <div id="analytics-panel"></div>
+  </div>
+  <script src="../services/analyticsService.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dash = AnalyticsService.getDashboard();
+      const panel = document.getElementById('analytics-panel');
+      panel.innerHTML = `
+        <div class="analytics-grid">
+          <div class="analytics-card"><strong>Memorial top</strong><p>${dash.memorialTop?.id || '—'} (${dash.memorialTop?.count || 0} views)</p></div>
+          <div class="analytics-card"><strong>Música top</strong><p>${dash.musicaTop?.id || '—'}</p></div>
+          <div class="analytics-card"><strong>Cidade top</strong><p>${dash.cidadeTop?.[0] || '—'}</p></div>
+          <div class="analytics-card"><strong>Sessões</strong><p>${dash.totalSessions}</p></div>
+        </div>`;
+      document.getElementById('admin-dashboard').hidden = false;
+    });
+  </script>
+</body>
+</html>

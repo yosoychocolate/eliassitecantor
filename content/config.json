@@ -1,0 +1,27 @@
+{
+  "config": {
+    "siteName": "Ministério Elias Silva",
+    "siteUrl": "https://ministerioeliassilva.com.br",
+    "version": "1.0",
+    "releaseDate": "2026-08-07",
+    "whatsapp": "5511970472292",
+    "redes": {
+      "youtube": "https://www.youtube.com/@cantoreliassilvaoficial",
+      "instagram": "https://www.instagram.com/cantoreliassilvaoficial/",
+      "facebook": "https://www.facebook.com/CANTORELIASSILVAOFICIAL",
+      "tiktok": "https://www.tiktok.com/@cantoreliassilvaoficial"
+    },
+    "diasNovoLancamento": 90,
+    "artistaDesde": 1986,
+    "adminEnabled": false,
+    "musicaFundo": {
+      "src": "assets/music/teu-amor-e-infinito.mp3",
+      "titulo": "Teu Amor É Infinito",
+      "artista": "Elias & Léia Silva",
+      "volume": 0.22,
+      "loop": true,
+      "autostart": true
+    }
+  },
+  "versiculos": []
+}

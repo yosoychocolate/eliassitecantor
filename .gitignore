@@ -1,0 +1,25 @@
+# Dependências / ambiente
+node_modules/
+.env
+.env.*
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Originais pesados de câmera — o site usa só thumbs/ e display/
+assets/images/eventos/**/DSC*.jpg
+assets/images/eventos/**/*.ARW
+assets/images/eventos/**/*.CR2
+assets/images/eventos/**/*.NEF
+assets/images/eventos/**/*.RAW
+
+# Manter hero e versões otimizadas
+!assets/images/eventos/**/hero-*.jpg
+!assets/images/eventos/**/thumbs/**
+!assets/images/eventos/**/display/**
+
+# Cache / build
+.cursor/
+*.log

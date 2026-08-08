@@ -1,0 +1,40 @@
+{
+  "entradas": [
+    {
+      "mes": 8,
+      "dia": 7,
+      "tipo": "memorial",
+      "ano": 2014,
+      "texto": "Em 2014, Elias Silva ministrava na Assembleia de Deus — levando louvor e Palavra a uma igreja reunida para adorar.",
+      "link": "memoriais.html",
+      "linkLabel": "Ver memoriais"
+    },
+    {
+      "mes": 3,
+      "dia": 10,
+      "tipo": "lancamento",
+      "ano": 2023,
+      "texto": "Neste dia foi lançado Carta do Rei — um dos hinos mais conhecidos do ministério.",
+      "link": "discografia.html",
+      "linkLabel": "Ver discografia"
+    },
+    {
+      "mes": 1,
+      "dia": 5,
+      "tipo": "biografia",
+      "ano": 1959,
+      "texto": "Em 5 de janeiro de 1959, nasceu em Rondonópolis Elias Ferreira da Silva — cantor, compositor e pastor.",
+      "link": "#linha-tempo",
+      "linkLabel": "Conhecer a história"
+    },
+    {
+      "mes": 8,
+      "dia": 2,
+      "tipo": "memorial",
+      "ano": 2026,
+      "texto": "Culto na Assembleia de Deus Belém, em Dourados/MS — louvor, comunhão e a presença de Deus.",
+      "link": "memorial.html?evento=dourados-ms",
+      "linkLabel": "Ver memorial"
+    }
+  ]
+}

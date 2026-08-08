@@ -1,0 +1,353 @@
+/* ---- Assistente Agendar Ministração ---- */
+.agenda-bot {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+}
+
+.agenda-bot__launcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(212, 175, 55, 0.18), rgba(0, 0, 0, 0.85));
+  color: var(--color-white, #fff);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.agenda-bot__launcher:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gold, #d4af37);
+  box-shadow: 0 12px 36px rgba(212, 175, 55, 0.15);
+}
+
+.agenda-bot__launcher-icon {
+  font-size: 1.1rem;
+}
+
+.agenda-bot__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  width: min(380px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 120px));
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.agenda-bot.is-open .agenda-bot__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.agenda-bot.is-open .agenda-bot__launcher {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.agenda-bot__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.agenda-bot__head-info strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--color-white, #fff);
+}
+
+.agenda-bot__head-info span {
+  font-size: 0.72rem;
+  color: var(--color-gray, #999);
+}
+
+.agenda-bot__close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-gray, #999);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.agenda-bot__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white, #fff);
+}
+
+.agenda-bot__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.agenda-bot__messages {
+  padding: 16px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: none;
+  overflow: visible;
+}
+
+.agenda-bot__bubble {
+  max-width: 92%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.agenda-bot__bubble strong,
+.agenda-bot__date-pick {
+  text-decoration: none !important;
+}
+
+.agenda-bot__date-pick::before {
+  content: '📅 ';
+}
+
+.agenda-bot__bubble--bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom-left-radius: 4px;
+}
+
+.agenda-bot__bubble--user {
+  align-self: flex-end;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom-right-radius: 4px;
+}
+
+.agenda-bot__bubble--warn {
+  border-color: rgba(255, 193, 7, 0.35);
+  background: rgba(255, 193, 7, 0.08);
+}
+
+.agenda-bot__bubble p {
+  margin: 0 0 8px;
+}
+
+.agenda-bot__bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.agenda-bot__bubble small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--color-gray, #999);
+}
+
+.agenda-bot__month {
+  margin: 4px 0 2px;
+  padding: 0 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold, #d4af37);
+}
+
+.agenda-bot__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px 16px;
+  flex-shrink: 0;
+}
+
+.agenda-bot__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.agenda-bot__body::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.35);
+  border-radius: 3px;
+}
+
+.agenda-bot__btn {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-white, #fff);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.agenda-bot__btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.agenda-bot__btn--primary {
+  background: var(--color-gold, #d4af37);
+  border-color: var(--color-gold, #d4af37);
+  color: #111;
+  font-weight: 600;
+  text-align: center;
+}
+
+.agenda-bot__btn--primary:hover {
+  background: #e0bc4a;
+}
+
+.agenda-bot__btn--date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agenda-bot__btn--date::before {
+  content: '□';
+  color: var(--color-gold, #d4af37);
+  font-size: 0.95rem;
+}
+
+.agenda-bot__input-wrap {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d0d0d;
+  flex-shrink: 0;
+}
+
+.agenda-bot__input-wrap[hidden] {
+  display: none;
+}
+
+.agenda-bot__input {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--color-white, #fff);
+  font-size: 0.82rem;
+  font-family: inherit;
+}
+
+.agenda-bot__input:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.agenda-bot__send {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-gold, #d4af37);
+  color: #111;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.agenda-bot__send:hover {
+  background: #e0bc4a;
+}
+
+@media (max-width: 480px) {
+  .agenda-bot {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .agenda-bot.is-open {
+    inset: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .agenda-bot.is-open .agenda-bot__panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-height: 100%;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+    transform: none;
+  }
+
+  body.agenda-bot-open {
+    overflow: hidden;
+  }
+
+  .agenda-bot__launcher span:not(.agenda-bot__launcher-icon) {
+    display: none;
+  }
+
+  .agenda-bot__launcher {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .agenda-bot__panel {
+    width: calc(100vw - 24px);
+    right: -8px;
+  }
+
+  .back-to-top {
+    bottom: calc(20px + 52px + 12px);
+    right: 12px;
+  }
+}
+
+body.agenda-bot-open .back-to-top {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agenda-bot__panel,
+  .agenda-bot__launcher {
+    transition: none;
+  }
+}

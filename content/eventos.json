@@ -1,0 +1,340 @@
+{
+  "eventos": [
+    {
+      "slug": "dourados-ms",
+      "titulo": "Assembleia de Deus Belém",
+      "cidade": "Dourados",
+      "estado": "MS",
+      "data": "2026-08-02",
+      "pastor": "Pr. Moisés Leopoldino",
+      "tipo": "Culto de Louvor e Adoração",
+      "descricao": "Foi uma alegria servir ao Senhor juntamente com a Igreja Assembleia de Deus Belém, em Dourados/MS.\n\nAgradeço ao Pastor Moisés Leopoldino, à liderança e a toda igreja pela calorosa recepção, pelo carinho e pela comunhão.\n\nQue Deus continue abençoando esta obra e que os frutos deste culto permaneçam para a glória de Cristo.",
+      "testemunho": "Um culto marcado pela presença de Deus, louvores, comunhão e uma igreja reunida para glorificar ao Senhor.",
+      "heroImage": "assets/images/eventos/dourados/hero-dourados.jpg",
+      "louvores": [
+        "Livres Para Voar",
+        "Carta do Rei",
+        "Não Vire as Costas Pra Mim",
+        "Promessas",
+        "Vida Feliz",
+        "Conte Comigo"
+      ],
+      "videos": [],
+      "galeria": [
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00050.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00050.jpg",
+          "titulo": "Elias e Léia Silva — Paz Seja Convosco"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00030.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00030.jpg",
+          "titulo": "Dupla no louvor com violão"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00032.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00032.jpg",
+          "titulo": "Ministração em dupla"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00014.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00014.jpg",
+          "titulo": "Elias e Léia no púlpito"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00015.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00015.jpg",
+          "titulo": "Louvor especial — AD Belém"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00001.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00001.jpg",
+          "titulo": "Elias e Léia ministrando juntos"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00008.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00008.jpg",
+          "titulo": "Elias Silva com violão"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00010.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00010.jpg",
+          "titulo": "Momento de adoração"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00012.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00012.jpg",
+          "titulo": "Léia Silva ministrando"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00005.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00005.jpg",
+          "titulo": "Ministração no púlpito"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00070.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00070.jpg",
+          "titulo": "Palavra com unção"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00040.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00040.jpg",
+          "titulo": "Elias Silva ministrando"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00055.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00055.jpg",
+          "titulo": "Louvor no altar"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09910.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09910.jpg",
+          "titulo": "Ministração da Palavra"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09855.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09855.jpg",
+          "titulo": "Oração no púlpito"
+        },
+        {
+          "categoria": "Louvor",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09935.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09935.jpg",
+          "titulo": "Ministração especial"
+        },
+        {
+          "categoria": "Infantil",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09964.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09964.jpg",
+          "titulo": "Crianças em adoração"
+        },
+        {
+          "categoria": "Coral",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09972.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09972.jpg",
+          "titulo": "Coral AD Belém"
+        },
+        {
+          "categoria": "Coral",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09971.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09971.jpg",
+          "titulo": "Coral em apresentação"
+        },
+        {
+          "categoria": "Coral",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09903.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09903.jpg",
+          "titulo": "Louvor congregacional — coral"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00140.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00140.jpg",
+          "titulo": "Congregação em adoração"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00090.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00090.jpg",
+          "titulo": "Igreja unida no louvor"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00100.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00100.jpg",
+          "titulo": "Momento de comunhão"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09870.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09870.jpg",
+          "titulo": "Adoração coletiva"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09925.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09925.jpg",
+          "titulo": "Multidão adorando"
+        },
+        {
+          "categoria": "Igreja",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09980.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09980.jpg",
+          "titulo": "Congregação participando"
+        },
+        {
+          "categoria": "Comunhão",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00020.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00020.jpg",
+          "titulo": "Elias Silva entre os irmãos"
+        },
+        {
+          "categoria": "Comunhão",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC00021.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC00021.jpg",
+          "titulo": "Comunhão com a liderança"
+        },
+        {
+          "categoria": "Comunhão",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09960.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09960.jpg",
+          "titulo": "Registros do culto"
+        },
+        {
+          "categoria": "Pregação",
+          "imagem": "assets/images/eventos/dourados/thumbs/DSC09946.jpg",
+          "imagemFull": "assets/images/eventos/dourados/display/DSC09946.jpg",
+          "titulo": "Culto de louvor e adoração"
+        }
+      ],
+      "galeriaTotal": 177,
+      "coords": {
+        "x": 42,
+        "y": 72
+      }
+    },
+    {
+      "slug": "gloria-dourados-ms",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Glória de Dourados",
+      "estado": "MS",
+      "data": "2026-08-01",
+      "tipo": "Show",
+      "realizado": true,
+      "descricao": "Ministração em Glória de Dourados/MS — agenda de agosto.",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 41, "y": 71 }
+    },
+    {
+      "slug": "assentamento-pana-ms",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Assentamento Pana",
+      "estado": "MS",
+      "data": "2026-08-04",
+      "tipo": "Show",
+      "realizado": true,
+      "descricao": "Ministração no Assentamento Pana/MS — agenda de agosto.",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 40, "y": 70 }
+    },
+    {
+      "slug": "alvilandia-sp",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Alvilândia",
+      "estado": "SP",
+      "data": "2026-08-14",
+      "tipo": "Show",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 48, "y": 55 }
+    },
+    {
+      "slug": "pernambuco-agosto",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Pernambuco",
+      "estado": "PE",
+      "data": "2026-08-15",
+      "tipo": "Show",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 76, "y": 36 }
+    },
+    {
+      "slug": "vigilia-monte-da-luz",
+      "titulo": "Vigília Monte da Luz",
+      "cidade": "Monte da Luz",
+      "estado": "SP",
+      "data": "2026-08-21",
+      "tipo": "Vigília",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 51, "y": 56 }
+    },
+    {
+      "slug": "guarulhos-sp",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Guarulhos",
+      "estado": "SP",
+      "data": "2026-08-22",
+      "tipo": "Show",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 52, "y": 58 }
+    },
+    {
+      "slug": "guaianases-sp",
+      "titulo": "AD Brás — Guaianases",
+      "cidade": "Guaianases",
+      "estado": "SP",
+      "data": "2026-08-28",
+      "tipo": "Show",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 51, "y": 57 }
+    },
+    {
+      "slug": "arthur-alvim-sp",
+      "titulo": "Show — Ministério Elias Silva",
+      "cidade": "Arthur Alvim",
+      "estado": "SP",
+      "data": "2026-08-30",
+      "tipo": "Show",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 51, "y": 57 }
+    },
+    {
+      "slug": "campo-grande-ms",
+      "titulo": "Congresso de Jovens",
+      "cidade": "Campo Grande",
+      "estado": "MS",
+      "data": "2026-11-15",
+      "tipo": "Congresso",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": {
+        "x": 38,
+        "y": 68
+      }
+    },
+    {
+      "slug": "recife-pe",
+      "titulo": "Cruzada Evangelística",
+      "cidade": "Recife",
+      "estado": "PE",
+      "data": "2026-09-20",
+      "tipo": "Cruzada",
+      "descricao": "",
+      "videos": [],
+      "galeria": [],
+      "coords": {
+        "x": 78,
+        "y": 38
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "marcos": [
+    { "ano": 1986, "titulo": "Primeiro álbum", "descricao": "Lançamento de Vida Feliz — início da carreira profissional." },
+    { "ano": 1988, "titulo": "Começou a cantar", "descricao": "Trajetória nos corais e ministério local em Rondonópolis." },
+    { "ano": 1995, "titulo": "Consolidação nacional", "descricao": "Músicas alcançam congregações em todo o Brasil." },
+    { "ano": 2008, "titulo": "Promessas (Ao Vivo)", "descricao": "Álbum ao vivo e primeiras grandes turnês." },
+    { "ano": 2016, "titulo": "Novo álbum", "descricao": "Continuidade da discografia e ministério pastoral." },
+    { "ano": 2026, "titulo": "Deus Não Falha", "descricao": "Novo lançamento e dupla com Léia Silva." }
+  ]
+}

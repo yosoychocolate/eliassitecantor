@@ -1,0 +1,766 @@
+/* Videoteca — catálogo cinematográfico */
+
+.lancamento-section {
+  padding: 0;
+}
+
+/* ---- Banner principal (home) ---- */
+.videoteca-cinema {
+  width: 100%;
+  background: #050505;
+}
+
+.videoteca-cinema__screen {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  position: relative;
+  line-height: 0;
+  cursor: pointer;
+  background: #050505;
+}
+
+.videoteca-cinema__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #050505;
+  position: relative;
+}
+
+.videoteca-cinema__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.videoteca-cinema__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom, rgba(9, 9, 9, 0.55) 0%, transparent 28%),
+    linear-gradient(to top, rgba(9, 9, 9, 0.95) 0%, rgba(9, 9, 9, 0.45) 42%, transparent 72%);
+  pointer-events: none;
+}
+
+.videoteca-cinema__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  background: rgba(204, 0, 0, 0.92);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.videoteca-cinema--home .videoteca-cinema__play {
+  justify-content: center;
+}
+
+.videoteca-cinema__screen:hover .videoteca-cinema__play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+.videoteca-cinema__info {
+  padding: 20px 24px 28px;
+}
+
+.videoteca-cinema__info--compact {
+  padding: 14px 24px 18px;
+}
+
+.videoteca-cinema__info-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.videoteca-cinema__info--compact .videoteca-cinema__badge {
+  margin-bottom: 0;
+}
+
+.videoteca-cinema__info--compact .videoteca-cinema__meta {
+  margin-bottom: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.videoteca-cinema__badge {
+  display: inline-block;
+  background: #b71c1c;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.videoteca-cinema__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+.videoteca-cinema__desc {
+  color: var(--color-gray);
+  font-style: italic;
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 12px;
+}
+
+.videoteca-cinema__meta {
+  color: var(--color-gray);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+/* ---- Canal oficial ---- */
+.videoteca-channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-dark);
+  background: linear-gradient(135deg, rgba(204,0,0,0.08), rgba(212,175,55,0.05));
+}
+
+.videoteca-channel__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.videoteca-channel__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.videoteca-channel__label {
+  display: block;
+  color: var(--color-white);
+  font-size: 1rem;
+}
+
+.videoteca-channel__handle {
+  display: block;
+  color: var(--color-gray);
+  font-size: 0.85rem;
+}
+
+/* ---- Carrosséis ---- */
+.videoteca-carousel,
+.videoteca-playlist {
+  margin-bottom: 48px;
+}
+
+#lancamentos .videoteca-carousel {
+  margin-bottom: 0;
+  padding-bottom: 32px;
+}
+
+.videoteca-carousel__header,
+.videoteca-playlist__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.videoteca-carousel__title,
+.videoteca-playlist__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.videoteca-carousel__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.videoteca-carousel__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gray-dark);
+  background: rgba(255,255,255,0.04);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.videoteca-carousel__btn:hover {
+  border-color: var(--color-gold);
+  background: rgba(212,175,55,0.1);
+}
+
+.videoteca-carousel__track,
+.videoteca-playlist__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.videoteca-carousel__track::-webkit-scrollbar,
+.videoteca-playlist__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Cards ---- */
+.videoteca-card {
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-bg-card, #141414);
+  border: 1px solid var(--color-gray-dark);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.videoteca-card--compact {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+}
+
+.videoteca-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+
+.videoteca-card__thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.videoteca-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.videoteca-card:hover .videoteca-card__thumb img {
+  transform: scale(1.08);
+}
+
+.videoteca-card__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.videoteca-card__play i {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #cc0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  padding-left: 3px;
+  box-shadow: 0 0 20px rgba(204,0,0,0.45);
+}
+
+.videoteca-card:hover .videoteca-card__play {
+  opacity: 1;
+}
+
+.videoteca-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #b71c1c;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.videoteca-card__title {
+  font-size: 0.9rem;
+  color: var(--color-white);
+  padding: 10px 12px 4px;
+  line-height: 1.35;
+}
+
+.videoteca-card__meta {
+  font-size: 0.72rem;
+  color: var(--color-gray);
+  padding: 0 12px 12px;
+}
+
+/* ---- Clipes Amigos (artistas parceiros) ---- */
+.videoteca-amigos-wrap {
+  margin-top: 48px;
+}
+
+.videoteca-amigos {
+  padding: 40px 0 56px;
+  border-top: 1px solid var(--color-gray-dark);
+}
+
+.videoteca-amigos__header {
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+
+.videoteca-amigos__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.videoteca-amigos__intro {
+  color: var(--color-gray);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.videoteca-amigos__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.videoteca-amigo-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg-card, #141414);
+  border: 1px solid var(--color-gray-dark);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.videoteca-amigo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.videoteca-amigo-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #050505;
+}
+
+.videoteca-amigo-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.videoteca-amigo-card:hover .videoteca-amigo-card__thumb img {
+  transform: scale(1.06);
+}
+
+.videoteca-amigo-card__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.videoteca-amigo-card__play i {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #cc0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  padding-left: 3px;
+}
+
+.videoteca-amigo-card:hover .videoteca-amigo-card__play {
+  opacity: 1;
+}
+
+.videoteca-amigo-card__body {
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.videoteca-amigo-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+.videoteca-amigo-card__artist {
+  font-size: 0.82rem;
+  color: var(--color-gold);
+  letter-spacing: 0.04em;
+}
+
+.videoteca-amigo-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.videoteca-amigo-card__cta i {
+  color: #cc0000;
+  font-size: 0.7rem;
+}
+
+.videoteca-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.videoteca-nav__btn {
+  padding: 10px 18px;
+  border-radius: 24px;
+  border: 1px solid var(--color-gray-dark);
+  background: transparent;
+  color: var(--color-gray);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.videoteca-nav__btn:hover,
+.videoteca-nav__btn.active {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background: rgba(212,175,55,0.08);
+}
+
+.videoteca-empty {
+  color: var(--color-gray);
+  text-align: center;
+  padding: 48px 0;
+}
+
+.lancamento-musica {
+  padding: 48px 0 0;
+}
+
+/* ---- Modal cinematográfico ---- */
+.video-modal__content--cinema {
+  max-width: 1180px;
+  width: 100%;
+}
+
+.video-modal__layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 24px;
+  align-items: start;
+}
+
+.video-modal__iframe-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: #000;
+}
+
+#video-player-host,
+#video-player-host iframe,
+#video-player-host .video-player-embed,
+#video-player-host .video-player-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-modal__upnext {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0,0,0,0.88);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.video-modal__upnext.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.video-modal__upnext-label {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.video-modal__upnext-card {
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  max-width: 280px;
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.video-modal__upnext-card:hover {
+  transform: scale(1.04);
+}
+
+.video-modal__upnext-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.video-modal__upnext-card span {
+  display: block;
+  color: var(--color-white);
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.video-modal__info {
+  margin-top: 20px;
+  color: var(--color-white);
+}
+
+.video-modal__info h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.video-modal__info p {
+  color: var(--color-gray);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.video-modal__aside {
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-gray-dark);
+  background: rgba(255,255,255,0.03);
+}
+
+.video-modal__sheet {
+  display: grid;
+  gap: 16px;
+}
+
+.video-modal__sheet div {
+  border-bottom: 1px solid var(--color-gray-dark);
+  padding-bottom: 12px;
+}
+
+.video-modal__sheet div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.video-modal__sheet dt {
+  font-size: 0.72rem;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.video-modal__sheet dd {
+  color: var(--color-white);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.video-modal__related-title {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.video-modal__related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.video-modal__related-item,
+.video-modal__next-card {
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.video-modal__related-item:hover,
+.video-modal__next-card:hover {
+  transform: scale(1.03);
+}
+
+.video-modal__related-item img,
+.video-modal__next-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.video-modal__related-item span,
+.video-modal__next-card span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-gray);
+  padding: 6px 4px;
+  line-height: 1.3;
+}
+
+.video-modal__next-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+
+.video-modal__next-card img {
+  width: 120px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .video-modal__layout {
+    grid-template-columns: 1fr;
+  }
+  .video-modal__aside {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoteca-cinema__play {
+    opacity: 1;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    font-size: 0;
+    gap: 0;
+    letter-spacing: 0;
+    white-space: normal;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play i {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .videoteca-card--compact {
+    flex: 0 0 180px;
+  }
+  .videoteca-channel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 375px) {
+  .videoteca-card--compact {
+    flex: 0 0 160px;
+  }
+}

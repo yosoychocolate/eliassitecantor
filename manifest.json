@@ -1,0 +1,27 @@
+{
+  "name": "Ministério Elias Silva",
+  "short_name": "Elias Silva",
+  "description": "Portal oficial do Ministério Elias Silva — música, memoriais e agenda",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "lang": "pt-BR",
+  "categories": ["music", "entertainment"],
+  "icons": [
+    {
+      "src": "assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
