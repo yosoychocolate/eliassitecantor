@@ -24,6 +24,17 @@
       "compositor": "Elias Silva & Léia Silva"
     },
     {
+      "titulo": "Conte Comigo",
+      "youtube": "https://youtu.be/botXSSIq7K4",
+      "descricao": "Nova versão de 2026 — reedição do clássico do repertório de Elias Silva.",
+      "ano": 2026,
+      "tipo": "clipe-oficial",
+      "novo": true,
+      "data": "2026-06-01",
+      "album": "Conte Comigo",
+      "compositor": "Elias Silva"
+    },
+    {
       "titulo": "Redenção",
       "youtube": "https://www.youtube.com/watch?v=wpy85XiINlI",
       "descricao": "Clipe oficial — Elias & Léia Silva. Louvor sobre a redenção em Cristo, ministrado em dupla.",
@@ -58,7 +69,7 @@
     },
     {
       "titulo": "Meu Farol",
-      "youtube": "",
+      "youtube": "https://youtu.be/JrU8bDqnpH8",
       "descricao": "Clipe oficial — Elias Silva.",
       "ano": 2026,
       "tipo": "clipe-oficial",
@@ -68,25 +79,24 @@
       "compositor": "Elias Silva"
     },
     {
-      "titulo": "Deus Não Falha",
-      "youtube": "",
-      "descricao": "Single oficial do Ministério Elias Silva — mensagem de fé e confiança em Deus.",
-      "ano": 2026,
+      "titulo": "Deus de Israel",
+      "youtube": "https://youtu.be/4yO0AYzKCOg",
+      "descricao": "Single oficial do Ministério Elias Silva — louvor sobre o Deus de Israel.",
+      "ano": 2005,
       "tipo": "clipe-oficial",
-      "novo": true,
-      "data": "2026-01-15",
+      "data": "2005-04-21",
       "views": 1200000,
       "duracao": "4:32",
-      "album": "Deus Não Falha (Single)",
+      "album": "Deus de Israel (Single)",
       "compositor": "Elias Silva"
     },
     {
       "titulo": "Livres Para Voar",
-      "youtube": "",
+      "youtube": "https://youtu.be/2DCgsMigBs8",
       "descricao": "Clipe oficial — louvor que celebra a liberdade em Cristo.",
-      "ano": 2024,
+      "ano": 1998,
       "tipo": "clipe-oficial",
-      "data": "2024-06-01",
+      "data": "1998-05-10",
       "views": 850000,
       "duracao": "5:10",
       "album": "Livres Para Voar",
@@ -94,11 +104,11 @@
     },
     {
       "titulo": "Carta do Rei",
-      "youtube": "",
+      "youtube": "https://youtu.be/0_XZiy5lKLY",
       "descricao": "Uma canção sobre esperança — um dos hinos mais conhecidos do ministério.",
-      "ano": 2023,
+      "ano": 1998,
       "tipo": "clipe-oficial",
-      "data": "2023-03-10",
+      "data": "1998-05-10",
       "views": 430000,
       "duracao": "4:48",
       "album": "Promessas",
@@ -106,11 +116,11 @@
     },
     {
       "titulo": "Promessas (Ao Vivo)",
-      "youtube": "",
+      "youtube": "https://youtu.be/OnXNTgrZhaI",
       "descricao": "Gravação ao vivo — momento de adoração e entrega.",
       "ano": 2008,
       "tipo": "ao-vivo",
-      "data": "2008-11-20",
+      "data": "2008-07-28",
       "views": 210000,
       "duracao": "6:15",
       "album": "Promessas (Ao Vivo)",
@@ -135,8 +145,18 @@
       "duracao": "2:05:00"
     },
     {
+      "titulo": "Conte Comigo",
+      "youtube": "https://youtu.be/TfX3QmEKy0s",
+      "descricao": "Versão original de 2005 — clássico do repertório de Elias Silva.",
+      "ano": 2005,
+      "tipo": "clipe-oficial",
+      "data": "2005-01-01",
+      "album": "Conte Comigo",
+      "compositor": "Elias Silva"
+    },
+    {
       "titulo": "Vida Feliz",
-      "youtube": "",
+      "youtube": "https://youtu.be/wLNpX279rw8",
       "descricao": "Clássico do repertório — playback oficial.",
       "ano": 1986,
       "tipo": "playback",
@@ -162,6 +182,28 @@
       "ano": 2026,
       "tipo": "clipes-amigos",
       "data": "2026-06-01"
+    },
+    {
+      "titulo": "Apoio de Vendas",
+      "parceiro": "",
+      "telefone": "(11) 97047-2292",
+      "whatsapp": "5511970472292",
+      "arquivo": "assets/videos/parcerias/apoio-de-vendas.mp4",
+      "descricao": "Registro de parceria e patrocínio — apoio de vendas, divulgado no canal oficial do ministério.",
+      "ano": 2026,
+      "tipo": "parcerias",
+      "data": "2026-08-01"
+    },
+    {
+      "titulo": "Parceria com Construtora",
+      "parceiro": "Carlos",
+      "telefone": "(11) 97047-2292",
+      "whatsapp": "5511970472292",
+      "arquivo": "assets/videos/parcerias/parceria-com-construtora.mp4",
+      "descricao": "Registro de parceria com construtora divulgado no canal oficial do ministério.",
+      "ano": 2026,
+      "tipo": "parcerias",
+      "data": "2026-08-01"
     }
   ]
 }

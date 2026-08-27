@@ -1,0 +1,45 @@
+/* Espaços reservados para Google AdSense — invisíveis até ativar em config.json */
+
+.ad-slot {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 728px;
+  margin: 28px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.ad-slot:not([hidden]) {
+  display: flex;
+  min-height: 90px;
+}
+
+.ad-slot--wide {
+  max-width: 970px;
+}
+
+.ad-slot--inline {
+  max-width: 100%;
+  margin: 24px 0;
+}
+
+.ad-slot ins.adsbygoogle {
+  display: block;
+  width: 100%;
+}
+
+/* Nunca exibir anúncios sobre modais ou abertura cinematográfica */
+.video-modal .ad-slot,
+.home-opening .ad-slot,
+#preloader .ad-slot {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .ad-slot:not([hidden]) {
+    margin: 20px auto;
+    min-height: 60px;
+  }
+}

@@ -3,8 +3,28 @@
  */
 function capaAlbum(d) {
   const ytid = youtubeId(d?.youtube);
-  if (ytid && typeof VideoService !== 'undefined') return VideoService.thumbUrl(ytid);
+  if (ytid && ytid !== '#') {
+    return typeof VideoService !== 'undefined'
+      ? VideoService.thumbUrl(ytid, 'hqdefault')
+      : `https://img.youtube.com/vi/${ytid}/hqdefault.jpg`;
+  }
   return asset(d?.capa || d?.capaFallback || 'assets/images/hero-bg.png');
+}
+
+function bindDiscografiaCapas(root) {
+  if (typeof VideoService === 'undefined') return;
+  root?.querySelectorAll('.disc-card').forEach(card => {
+    const img = card.querySelector('.disc-card__cover img');
+    if (!img || img.dataset.capaBound) return;
+    img.dataset.capaBound = '1';
+    const ytid = card.dataset.youtubeId;
+    if (!ytid) return;
+    const musica = (Portal.musicas || []).find(m => youtubeId(m.youtube) === ytid);
+    VideoService.bindThumbFallback(img, musica || {
+      youtube: ytid,
+      thumbFallback: musica?.capaFallback || 'assets/images/hero-bg.png'
+    });
+  });
 }
 
 function renderLancamento() {
@@ -36,16 +56,14 @@ function renderLancamento() {
             ${isExternalUrl(m.apple) ? `<a href="${m.apple}" target="_blank" rel="noopener" aria-label="Apple Music"><i class="fab fa-apple"></i></a>` : ''}
           </div>
           <div class="lancamento__actions">
-            ${ytid ? `<button class="btn btn--primary btn--lg lancamento__watch" data-youtube="${ytid}"><i class="fas fa-play"></i> Assistir</button>` : ''}
+            ${ytid ? `<button type="button" class="btn btn--primary btn--lg lancamento__watch" data-youtube-id="${ytid}" data-video-title="${m.titulo}"><i class="fas fa-play"></i> Assistir</button>` : ''}
             ${m.audio ? `<button class="btn btn--outline" data-play-audio="${asset(m.audio)}" data-play-title="${m.titulo}"><i class="fas fa-headphones"></i> Ouvir</button>` : ''}
           </div>
         </div>
       </div>
     </div>`;
 
-  el.querySelector('.lancamento__watch')?.addEventListener('click', () => {
-    openYoutube(ytid, m.youtube ? { title: m.titulo, descricao: m.letra || '' } : {});
-  });
+  if (typeof bindVideoCards === 'function') bindVideoCards(el, Portal.videos || []);
   bindPlayButtons(el);
 }
 
@@ -63,27 +81,35 @@ function renderDiscografia() {
     <div class="discografia-year">
       <h3 class="discografia-year__label">${ano}</h3>
       <div class="discografia-year__grid">
-        ${byYear[ano].map(d => `
-          <article class="disc-card">
+        ${byYear[ano].map(d => {
+          const ytid = youtubeId(d.youtube);
+          const playable = Boolean(ytid && ytid !== '#');
+          return `
+          <article class="disc-card${playable ? ' disc-card--playable' : ''}"${playable ? ` data-youtube-id="${ytid}" data-video-title="${d.titulo}" tabindex="0" role="button" aria-label="Assistir ${d.titulo}"` : ''}>
             <div class="disc-card__cover">
               <img src="${capaAlbum(d)}" alt="Capa ${d.titulo}" loading="lazy">
+              ${playable ? '<span class="disc-card__play-overlay" aria-hidden="true"><i class="fas fa-play"></i></span>' : ''}
             </div>
             <div class="disc-card__body">
               <h4 class="disc-card__title">${d.titulo}</h4>
               <hr class="disc-card__line">
               <div class="disc-card__links">
-                ${d.youtube ? `<a href="https://youtube.com/watch?v=${youtubeId(d.youtube)}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>` : ''}
+                ${playable ? `<button type="button" class="disc-card__stream disc-card__stream--yt" data-youtube-id="${ytid}" data-video-title="${d.titulo}" aria-label="Assistir ${d.titulo} no YouTube"><i class="fab fa-youtube"></i></button>` : ''}
                 ${isExternalUrl(d.spotify) ? `<a href="${d.spotify}" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>` : ''}
                 ${isExternalUrl(d.deezer) ? `<a href="${d.deezer}" target="_blank" rel="noopener" aria-label="Deezer"><i class="fas fa-music"></i> Deezer</a>` : ''}
                 ${isExternalUrl(d.apple) ? `<a href="${d.apple}" target="_blank" rel="noopener" aria-label="Apple Music"><i class="fab fa-apple"></i></a>` : ''}
               </div>
               ${d.audio ? `<button class="disc-card__play" data-play-audio="${asset(d.audio)}" data-play-title="${d.titulo}" aria-label="Ouvir ${d.titulo}"><i class="fas fa-play"></i></button>` : ''}
             </div>
-          </article>`).join('')}
+          </article>`;
+        }).join('')}
       </div>
     </div>`).join('');
 
   bindPlayButtons(el);
+  bindDiscografiaCapas(el);
+  if (typeof bindVideoCards === 'function') bindVideoCards(el, Portal.videos || []);
+  if (typeof initVideoModalClose === 'function') initVideoModalClose();
 }
 
 function renderAgenda() {

@@ -100,6 +100,8 @@ function initScrollEffects() {
 
 /* ---- Active Nav Link ---- */
 function initActiveNavLink() {
+  if (document.body.dataset.page === 'videoteca') return;
+
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav__link');
 
@@ -109,7 +111,8 @@ function initActiveNavLink() {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
           navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            const href = link.getAttribute('href') || '';
+            link.classList.toggle('active', href === `#${id}` || href.endsWith(`#${id}`));
           });
         }
       });

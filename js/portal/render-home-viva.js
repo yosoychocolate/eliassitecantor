@@ -21,9 +21,9 @@ const HOME_CAPITULOS = [
   },
   {
     ano: 2005,
-    titulo: 'Conte Comigo',
-    descricao: 'Discografia consolidada — hinos que passaram a fazer parte da vida de milhares de igrejas.',
-    youtube: 'wHVY4VyjE4k',
+    titulo: 'Deus de Israel',
+    descricao: 'Lançado em 21 de abril de 2005 — hino de Elias Silva sobre o Deus de Israel.',
+    youtube: '4yO0AYzKCOg',
     link: 'discografia.html'
   },
   {
@@ -34,8 +34,8 @@ const HOME_CAPITULOS = [
   },
   {
     ano: 2026,
-    titulo: 'Deus Não Falha',
-    descricao: 'Novo lançamento e memoriais preservados — o portal oficial registra cada culto para as próximas gerações.',
+    titulo: 'Memoriais & Portal',
+    descricao: 'Memoriais preservados — o portal oficial registra cada culto para as próximas gerações.',
     imagemMemorial: 'assets/images/eventos/dourados/hero-dourados.jpg',
     link: 'memorial.html?evento=dourados-ms'
   }
@@ -50,8 +50,38 @@ function imagemCapitulo(c) {
 
 function capaMusica(m) {
   const ytid = youtubeId(m?.youtube);
-  if (ytid && typeof VideoService !== 'undefined') return VideoService.thumbUrl(ytid);
+  if (ytid) {
+    return typeof VideoService !== 'undefined'
+      ? VideoService.thumbUrl(ytid)
+      : `https://img.youtube.com/vi/${ytid}/maxresdefault.jpg`;
+  }
   return asset(m?.capa || m?.capaFallback || MINISTRY_PHOTO);
+}
+
+function dismissHomeOpening({ animated = true } = {}) {
+  const opening = document.getElementById('home-opening');
+  if (!opening || opening.classList.contains('is-dismissed')) return false;
+
+  if (location.protocol === 'file:') {
+    window.location.href = 'http://localhost:3456/';
+    return true;
+  }
+
+  document.body.classList.add('portal-active');
+  document.body.classList.remove('home-opening-active');
+  sessionStorage.setItem('portal-entered', '1');
+
+  opening.classList.add('is-leaving');
+  if (animated) {
+    setTimeout(() => {
+      opening.classList.add('is-dismissed');
+      window.scrollTo(0, 0);
+    }, 700);
+  } else {
+    opening.classList.add('is-dismissed');
+  }
+
+  return true;
 }
 
 function initHomeOpening() {
@@ -72,24 +102,15 @@ function initHomeOpening() {
   setTimeout(() => btn?.classList.add('is-visible'), delay);
 
   const enter = () => {
-    if (location.protocol === 'file:') {
-      window.location.href = 'http://localhost:3456/';
-      return;
+    if (dismissHomeOpening({ animated: true })) {
+      if (typeof BackgroundMusic !== 'undefined') BackgroundMusic.startOnGesture();
     }
-    opening.classList.add('is-leaving');
-    document.body.classList.add('portal-active');
-    document.body.classList.remove('home-opening-active');
-    sessionStorage.setItem('portal-entered', '1');
-    if (typeof BackgroundMusic !== 'undefined') BackgroundMusic.startOnGesture();
-    setTimeout(() => {
-      opening.classList.add('is-dismissed');
-      window.scrollTo(0, 0);
-    }, 700);
   };
 
   btn?.addEventListener('click', enter);
   opening.addEventListener('click', e => {
-    if (e.target === opening.querySelector('.home-opening__bg')) enter();
+    if (e.target.closest('.home-opening__file-hint')) return;
+    enter();
   });
 }
 
@@ -370,4 +391,6 @@ function renderFraseFinal() {
 
 function renderLancamentoFeaturedOnly() {
   renderVideoFeatured();
+  renderVideotecaCarousel();
+  initVideotecaCarousels();
 }

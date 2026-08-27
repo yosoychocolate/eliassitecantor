@@ -26,6 +26,7 @@ const VideoService = {
   TIPO_LABEL: {
     'clipe-oficial': 'Clipe Oficial',
     'clipes-amigos': 'Clipe Amigo',
+    parcerias: 'Patrocínio e Parceria',
     'ao-vivo': 'Apresentação ao Vivo',
     congressos: 'Congresso',
     entrevista: 'Entrevista',
@@ -35,13 +36,31 @@ const VideoService = {
 
   AMIGOS_INTRO: 'Alguns artistas fazem parte da caminhada do ministério de Elias Silva. Nesta seção estão reunidos clipes publicados em seu canal como forma de apoio, incentivo e divulgação.',
 
+  PARCERIAS_INTRO: 'Empresas e parceiros que caminham junto com o Ministério Elias Silva. Aqui estão reunidos os registros oficiais de patrocínios e parcerias publicados no canal.',
+
+  PARTNER_TIPOS: ['clipes-amigos', 'parcerias'],
+
   id(video) {
-    const id = youtubeId(video?.youtube);
-    return id && id !== '#' ? id : '';
+    const yt = youtubeId(video?.youtube);
+    if (yt && yt !== '#') return yt;
+    if (video?.arquivo) {
+      const base = String(video.arquivo).split('/').pop().replace(/\.[^.]+$/, '');
+      return base ? `local-${base}` : '';
+    }
+    return '';
+  },
+
+  isLocal(video) {
+    return Boolean(video?.arquivo);
+  },
+
+  src(video) {
+    return video?.arquivo ? asset(video.arquivo) : '';
   },
 
   isRealVideo(video) {
-    const id = this.id(video);
+    if (video?.arquivo) return true;
+    const id = youtubeId(video?.youtube);
     return Boolean(id && id !== this.PLACEHOLDER_ID);
   },
 
@@ -58,10 +77,81 @@ const VideoService = {
   },
 
   thumbFor(video) {
-    const id = this.id(video);
-    if (!id) return asset(video?.thumb || video?.thumbFallback || '');
-    if (video?.thumb && !String(video.thumb).startsWith('http')) return asset(video.thumb);
-    return this.thumbUrl(id);
+    if (video?.tipo === 'parcerias') return '';
+    const yt = youtubeId(video?.youtube);
+    if (yt) return this.thumbUrl(yt);
+    if (video?.thumb) return asset(video.thumb);
+    return asset(video?.thumbFallback || '');
+  },
+
+  parceriaCoverHtml(video, extraClass = '') {
+    const parceiro = video?.parceiro || '';
+    const telefone = this.parceriaTelefone(video);
+    const subtitle = parceiro || 'Registro oficial de parceria';
+    return `
+      <div class="videoteca-parceria-card__panel ${extraClass}" aria-hidden="true">
+        <span class="videoteca-parceria-card__badge">Parceria</span>
+        <h4 class="videoteca-parceria-card__title">${video.titulo}</h4>
+        <p class="videoteca-parceria-card__subtitle">${subtitle}</p>
+        ${telefone ? `<p class="videoteca-parceria-card__phone">${telefone}</p>` : ''}
+        <span class="videoteca-parceria-card__cta"><i class="fas fa-play"></i> Assistir</span>
+      </div>`;
+  },
+
+  parceriaTelefone(video) {
+    return (video?.telefone || '').trim();
+  },
+
+  parceriaWhatsappDigits(video) {
+    const raw = video?.whatsapp || video?.telefone || '';
+    return String(raw).replace(/\D/g, '');
+  },
+
+  parceriaWhatsappHref(video) {
+    const digits = this.parceriaWhatsappDigits(video);
+    return digits ? `https://wa.me/${digits}` : '';
+  },
+
+  parceriaContatoHtml(video, { variant = 'overlay' } = {}) {
+    const telefone = this.parceriaTelefone(video);
+    if (!telefone) return '';
+
+    const href = this.parceriaWhatsappHref(video);
+    const cls = variant === 'info'
+      ? 'video-modal__parceria-info'
+      : 'video-modal__parceria-contato';
+    const linkCls = `${cls}-link`;
+    const inner = `<i class="fab fa-whatsapp" aria-hidden="true"></i><span class="${cls}-numero">${telefone}</span>`;
+
+    const link = href
+      ? `<a href="${href}" class="${linkCls}" target="_blank" rel="noopener noreferrer">${inner}</a>`
+      : `<span class="${linkCls}">${inner}</span>`;
+
+    return `
+      <div class="${cls}">
+        <span class="${cls}-label">WhatsApp</span>
+        ${link}
+      </div>`;
+  },
+
+  parceriaModalItemHtml(video) {
+    const telefone = this.parceriaTelefone(video);
+    return `
+      <span class="video-modal__parceria-link" aria-hidden="true">
+        <span class="video-modal__parceria-link-kicker">Parceria</span>
+        <span class="video-modal__parceria-link-row">
+          <span class="video-modal__parceria-link-title">${video.titulo}</span>
+          <i class="fas fa-play" aria-hidden="true"></i>
+        </span>
+        ${telefone ? `<span class="video-modal__parceria-link-phone">${telefone}</span>` : ''}
+      </span>`;
+  },
+
+  thumbMarkup(video, { modal = false } = {}) {
+    if (video?.tipo === 'parcerias') {
+      return modal ? this.parceriaModalItemHtml(video) : this.parceriaCoverHtml(video);
+    }
+    return `<img src="${this.thumbFor(video)}" alt="${video.titulo}" loading="lazy">`;
   },
 
   channelUrl() {
@@ -72,13 +162,21 @@ const VideoService = {
     return (list || Portal.videos || []).filter(v => this.isRealVideo(v));
   },
 
-  /** Vídeos do ministério — exclui clipes de artistas parceiros */
+  /** Vídeos do ministério — exclui clipes de parceiros e patrocínios */
   ministryPlayable(list) {
-    return this.playable(list).filter(v => v.tipo !== 'clipes-amigos');
+    return this.playable(list).filter(v => !this.PARTNER_TIPOS.includes(v.tipo));
   },
 
   friendClips(list) {
     return this.playable(list).filter(v => v.tipo === 'clipes-amigos');
+  },
+
+  partnerClips(list) {
+    return this.playable(list).filter(v => v.tipo === 'parcerias');
+  },
+
+  partnerEntries(list) {
+    return (list || Portal.videos || []).filter(v => v.tipo === 'parcerias');
   },
 
   featured() {
@@ -125,6 +223,13 @@ const VideoService = {
       if (idx === -1) return clips[0] || null;
       return clips[idx + 1] || clips[0] || null;
     }
+    if (current?.tipo === 'parcerias') {
+      const clips = this.partnerClips();
+      if (!current) return clips[1] || clips[0] || null;
+      const idx = clips.findIndex(v => this.id(v) === this.id(current));
+      if (idx === -1) return clips[0] || null;
+      return clips[idx + 1] || clips[0] || null;
+    }
     const clips = this.officialClips();
     if (!current) return clips[1] || clips[0] || null;
     const idx = clips.findIndex(v => this.id(v) === this.id(current));
@@ -138,6 +243,11 @@ const VideoService = {
         .filter(v => this.id(v) !== this.id(video))
         .slice(0, 4);
     }
+    if (video?.tipo === 'parcerias') {
+      return this.partnerClips()
+        .filter(v => this.id(v) !== this.id(video))
+        .slice(0, 4);
+    }
     return this.officialClips()
       .filter(v => this.id(v) !== this.id(video))
       .slice(0, 4);
@@ -146,6 +256,8 @@ const VideoService = {
   metaFromVideo(video) {
     const next = this.nextVideo(video);
     const isAmigo = video?.tipo === 'clipes-amigos';
+    const isParceria = video?.tipo === 'parcerias';
+    const partnerName = video?.parceiro || video?.artista;
     return {
       video,
       title: video.titulo,
@@ -156,8 +268,9 @@ const VideoService = {
         lancamento: this.formatDateLong(video),
         categoria: this.TIPO_LABEL[video.tipo] || video.tipo || '—',
         album: video.album || '—',
-        compositor: video.artista || video.compositor || (isAmigo ? '—' : 'Elias Silva'),
-        compositorLabel: isAmigo ? 'Artista' : 'Compositor'
+        compositor: partnerName || video.compositor || (isAmigo || isParceria ? '—' : 'Elias Silva'),
+        compositorLabel: isParceria ? 'Parceiro' : (isAmigo ? 'Artista' : 'Compositor'),
+        telefone: isParceria ? this.parceriaTelefone(video) : ''
       }
     };
   },
@@ -185,6 +298,31 @@ function bindVideoCardThumbs(root, catalog) {
   });
 }
 
+function findVideoMeta(id) {
+  return (Portal.videos || []).find(v => VideoService.id(v) === id)
+    || (Portal.musicas || []).find(m => youtubeId(m.youtube) === id)
+    || null;
+}
+
+/** Abre o player a partir de um card ou botão com data-youtube-id */
+function openVideoCard(card, e) {
+  if (!card?.dataset?.youtubeId) return;
+  if (card.closest('.videoteca-carousel__nav, .videoteca-playlist__header')) return;
+
+  if (typeof dismissHomeOpening === 'function') {
+    dismissHomeOpening({ animated: false });
+  }
+
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  const id = card.dataset.youtubeId;
+  const video = findVideoMeta(id);
+  openYoutube(id, video || { titulo: card.dataset.videoTitle || '' });
+}
+
 /** Um único handler de clique — sempre usa o data-youtube-id do card clicado */
 function initVideoCardClicks() {
   if (initVideoCardClicks._done) return;
@@ -192,16 +330,8 @@ function initVideoCardClicks() {
 
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-youtube-id]');
-    if (!card || card.closest('.videoteca-carousel__nav, .videoteca-playlist__header')) return;
-
-    const id = card.dataset.youtubeId;
-    if (!id) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const video = (Portal.videos || []).find(v => VideoService.id(v) === id);
-    openYoutube(id, video || { titulo: card.dataset.videoTitle || '' });
+    if (!card || card.dataset.videoClickBound) return;
+    openVideoCard(card, e);
   });
 
   document.addEventListener('keydown', e => {
@@ -209,15 +339,17 @@ function initVideoCardClicks() {
     const card = e.target.closest('[data-youtube-id]');
     if (!card || card.tagName === 'BUTTON') return;
     e.preventDefault();
-    const id = card.dataset.youtubeId;
-    if (!id) return;
-    const video = (Portal.videos || []).find(v => VideoService.id(v) === id);
-    openYoutube(id, video || { titulo: card.dataset.videoTitle || '' });
+    openVideoCard(card);
   });
 }
 
 function bindVideoCards(root, relatedAll) {
   bindVideoCardThumbs(root, relatedAll?.length ? relatedAll : (Portal.videos || []));
+  root?.querySelectorAll('[data-youtube-id]').forEach(card => {
+    if (card.dataset.videoClickBound) return;
+    card.dataset.videoClickBound = '1';
+    card.addEventListener('click', e => openVideoCard(card, e));
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => initVideoCardClicks());

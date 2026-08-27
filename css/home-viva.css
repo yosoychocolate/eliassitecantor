@@ -52,10 +52,12 @@ body[data-page="home"].portal-active .header {
 
 .home-opening.is-leaving {
   opacity: 0;
+  pointer-events: none;
 }
 
 .home-opening.is-dismissed {
   display: none;
+  pointer-events: none;
 }
 
 .home-opening__bg {

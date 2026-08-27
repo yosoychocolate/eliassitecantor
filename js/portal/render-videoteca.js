@@ -5,7 +5,7 @@ function renderVideoCardCompact(video) {
   const id = VideoService.id(video);
   if (!id) return '';
   return `
-    <article class="videoteca-card videoteca-card--compact" data-youtube-id="${id}" data-video-title="${video.titulo}" tabindex="0" role="button">
+    <button type="button" class="videoteca-card videoteca-card--compact" data-youtube-id="${id}" data-video-title="${video.titulo}" aria-label="${video.titulo}">
       <div class="videoteca-card__thumb">
         <img src="${VideoService.thumbFor(video)}" alt="${video.titulo}" loading="lazy">
         <span class="videoteca-card__play"><i class="fas fa-play"></i></span>
@@ -13,7 +13,7 @@ function renderVideoCardCompact(video) {
       </div>
       <p class="videoteca-card__title">${video.titulo}</p>
       ${VideoService.formatViews(video.views) ? `<p class="videoteca-card__meta">${VideoService.formatViews(video.views)}</p>` : ''}
-    </article>`;
+    </button>`;
 }
 
 function renderVideoFeatured() {
@@ -35,7 +35,7 @@ function renderVideoFeatured() {
           ${featured.isNovo || featured.destaque ? `<span class="videoteca-cinema__badge">${label}</span>` : ''}
           <p class="videoteca-cinema__meta">${meta}</p>
         </div>
-        <h2 class="visually-hidden">${featured.titulo}</h2>
+        <h2 class="videoteca-cinema__title videoteca-cinema__title--home">${featured.titulo}</h2>
       </div>`
     : `<div class="videoteca-cinema__info container">
         ${featured.isNovo || featured.destaque ? `<span class="videoteca-cinema__badge">${label}</span>` : ''}
@@ -51,6 +51,7 @@ function renderVideoFeatured() {
         <span class="videoteca-cinema__media">
           <img src="${thumb}" alt="${featured.titulo}" loading="eager" decoding="async">
           <span class="videoteca-cinema__shade" aria-hidden="true"></span>
+          ${isHome ? `<span class="videoteca-cinema__caption"><span class="videoteca-cinema__caption-title">${featured.titulo}</span></span>` : ''}
         </span>
         <span class="videoteca-cinema__play"><i class="fas fa-play"></i> Assistir agora</span>
       </button>
@@ -123,6 +124,43 @@ function renderVideoCardAmigo(video) {
     </article>`;
 }
 
+function renderVideoCardParceria(video) {
+  const id = VideoService.id(video);
+  if (!id) return '';
+  return `
+    <article class="videoteca-parceria-card" data-youtube-id="${id}" data-video-title="${video.titulo}" tabindex="0" role="button">
+      ${VideoService.parceriaCoverHtml(video)}
+    </article>`;
+}
+
+function renderVideotecaParcerias() {
+  const el = document.getElementById('videoteca-parcerias');
+  if (!el) return;
+
+  const items = VideoService.partnerClips();
+  const cadastrados = VideoService.partnerEntries().length;
+
+  if (!cadastrados) {
+    el.innerHTML = '';
+    return;
+  }
+
+  const grid = items.length
+    ? `<div class="videoteca-amigos__grid">${items.map(v => renderVideoCardParceria(v)).join('')}</div>`
+    : '<p class="videoteca-parcerias__empty">Os vídeos de parceria serão publicados em breve nesta seção.</p>';
+
+  el.innerHTML = `
+    <section class="videoteca-amigos videoteca-parcerias" id="videoteca-parcerias-section">
+      <header class="videoteca-amigos__header">
+        <h3 class="videoteca-amigos__title">🤝 Patrocínios e Parcerias</h3>
+        <p class="videoteca-amigos__intro">${VideoService.PARCERIAS_INTRO}</p>
+      </header>
+      ${grid}
+    </section>`;
+
+  bindVideoCards(el, Portal.videos);
+}
+
 function renderVideotecaAmigos() {
   const el = document.getElementById('videoteca-amigos');
   if (!el) return;
@@ -182,6 +220,7 @@ function renderVideoteca() {
   renderVideotecaChannel();
   renderVideotecaPlaylists();
   renderVideotecaAmigos();
+  renderVideotecaParcerias();
 }
 
 function renderLancamentosVideoteca() {
@@ -189,12 +228,115 @@ function renderLancamentosVideoteca() {
   renderVideotecaCarousel();
 }
 
+function videotecaTargetId(navKey) {
+  return navKey === 'parcerias-section' ? 'videoteca-parcerias-section' : `videoteca-${navKey}`;
+}
+
+function scrollToVideotecaTarget(targetId, { smooth = true } = {}) {
+  const el = document.getElementById(targetId);
+  if (!el) return false;
+
+  const margin = parseInt(getComputedStyle(el).scrollMarginTop, 10);
+  const offset = Number.isFinite(margin) && margin > 0
+    ? margin
+    : ((document.getElementById('header')?.offsetHeight || 80) + 24);
+
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: Math.max(0, top), left: 0, behavior: smooth ? 'smooth' : 'instant' });
+  return true;
+}
+
+function setVideotecaPageFocus(targetId) {
+  const main = document.getElementById('main-content');
+  if (!main) return;
+
+  main.classList.remove('videoteca-page--focus-parcerias', 'videoteca-page--focus-amigos');
+
+  if (targetId === 'videoteca-parcerias-section') {
+    main.classList.add('videoteca-page--focus-parcerias');
+    return;
+  }
+  if (targetId === 'videoteca-clipes-amigos') {
+    main.classList.add('videoteca-page--focus-amigos');
+  }
+}
+
+function setVideotecaNavActive(targetId) {
+  const navKey = targetId === 'videoteca-parcerias-section'
+    ? 'parcerias-section'
+    : targetId.replace(/^videoteca-/, '');
+
+  document.querySelectorAll('[data-videoteca-nav]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.videotecaNav === navKey);
+  });
+  activateVideotecaMainNav(targetId);
+}
+
+function goToVideotecaSection(targetId, { smooth = true, updateHash = true } = {}) {
+  if (!document.getElementById(targetId)) return false;
+
+  if (updateHash) {
+    history.replaceState(null, '', `#${targetId}`);
+  }
+
+  setVideotecaNavActive(targetId);
+  setVideotecaPageFocus(targetId);
+
+  const isPanelSection = targetId === 'videoteca-parcerias-section' || targetId === 'videoteca-clipes-amigos';
+
+  if (isPanelSection) {
+    const anchor = document.querySelector('.videoteca-nav');
+    if (anchor) {
+      const margin = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 80;
+      const top = anchor.getBoundingClientRect().top + window.scrollY - margin - 12;
+      window.scrollTo({ top: Math.max(0, top), left: 0, behavior: smooth ? 'smooth' : 'instant' });
+    }
+    return true;
+  }
+
+  scrollToVideotecaTarget(targetId, { smooth });
+  requestAnimationFrame(() => scrollToVideotecaTarget(targetId, { smooth: false }));
+  window.setTimeout(() => scrollToVideotecaTarget(targetId, { smooth: false }), 350);
+
+  return true;
+}
+
+function activateVideotecaMainNav(sectionId) {
+  document.querySelectorAll('.nav__list .nav__link').forEach(link => {
+    const href = link.getAttribute('href') || '';
+    const isPatrocinios = href.includes('videoteca-parcerias-section');
+    const isVideoteca = /videoteca\.html$/i.test(href.split('#')[0]) || href === 'videoteca.html';
+    if (isPatrocinios) {
+      link.classList.toggle('active', sectionId === 'videoteca-parcerias-section');
+    } else if (isVideoteca) {
+      link.classList.toggle('active', sectionId !== 'videoteca-parcerias-section');
+    }
+  });
+}
+
+function applyVideotecaHashNav({ smooth = true } = {}) {
+  const sectionId = (location.hash || '').replace(/^#/, '');
+  if (!sectionId.startsWith('videoteca-')) return false;
+  return goToVideotecaSection(sectionId, { smooth, updateHash: false });
+}
+
 function initVideotecaNav() {
   document.querySelectorAll('[data-videoteca-nav]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-videoteca-nav]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(`videoteca-${btn.dataset.videotecaNav}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      goToVideotecaSection(videotecaTargetId(btn.dataset.videotecaNav), { smooth: true });
     });
   });
+
+  document.querySelectorAll('.nav__link[href*="videoteca-parcerias-section"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const onVideoteca = document.body.dataset.page === 'videoteca'
+        || /videoteca\.html?$/i.test(location.pathname)
+        || location.pathname.endsWith('/videoteca');
+      if (!onVideoteca) return;
+      e.preventDefault();
+      goToVideotecaSection('videoteca-parcerias-section', { smooth: true });
+    });
+  });
+
+  window.addEventListener('hashchange', () => applyVideotecaHashNav({ smooth: true }));
 }

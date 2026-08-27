@@ -8,10 +8,10 @@ const VideoModal = {
   openGeneration: 0,
 
   open(id, videoOrMeta) {
-    const videoId = youtubeId(id) || id;
+    const video = resolveVideoMeta(id, videoOrMeta);
+    const videoId = video ? VideoService.id(video) : (youtubeId(id) || id);
     if (!videoId) return;
 
-    const video = resolveVideoMeta(videoId, videoOrMeta);
     const resolvedMeta = video
       ? VideoService.metaFromVideo(video)
       : {
@@ -32,6 +32,7 @@ const VideoModal = {
     if (!modal) return;
 
     this.fillPanel(resolvedMeta);
+    this._renderParceriaContato(resolvedMeta.video);
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('scroll-locked');
@@ -39,15 +40,35 @@ const VideoModal = {
     modal.querySelector('.video-modal__content')?.scrollTo(0, 0);
     document.getElementById('video-modal-upnext')?.classList.remove('is-visible');
 
-    this.mountIframe(videoId, gen);
+    this.mountPlayer(videoId, gen, video);
   },
 
-  mountIframe(id, gen) {
+  mountPlayer(id, gen, video) {
     const host = document.getElementById('video-player-host');
     if (!host) return;
 
     host.innerHTML = '';
     host.dataset.videoId = id;
+
+    const resolved = video || (Portal.videos || []).find(v => VideoService.id(v) === id);
+
+    if (resolved && VideoService.isLocal(resolved)) {
+      const vid = document.createElement('video');
+      vid.src = VideoService.src(resolved);
+      vid.controls = true;
+      vid.autoplay = true;
+      vid.playsInline = true;
+      vid.className = 'video-player-native';
+      vid.title = resolved.titulo || 'Vídeo';
+      vid.setAttribute('controlsList', 'nodownload');
+      vid.addEventListener('loadeddata', () => {
+        if (gen !== this.openGeneration) return;
+        host.dataset.videoId = id;
+      });
+      host.appendChild(vid);
+      vid.play().catch(() => {});
+      return;
+    }
 
     const iframe = document.createElement('iframe');
     const origin = encodeURIComponent(location.origin);
@@ -68,11 +89,23 @@ const VideoModal = {
 
   fillPanel(meta) {
     const artista = meta.video?.artista;
-    const title = meta.video?.tipo === 'clipes-amigos' && artista
-      ? `${meta.title} · ${artista}`
-      : (meta.title || '');
+    const parceiro = meta.video?.parceiro;
+    let title = meta.title || '';
+    if (meta.video?.tipo === 'clipes-amigos' && artista) title = `${meta.title} · ${artista}`;
+    if (meta.video?.tipo === 'parcerias' && parceiro) title = `${meta.title} · ${parceiro}`;
     document.getElementById('video-modal-title').textContent = title;
     document.getElementById('video-modal-desc').textContent = meta.descricao || '';
+
+    const contatoInfo = this._ensureParceriaInfoEl();
+    if (contatoInfo) {
+      if (meta.video?.tipo === 'parcerias' && VideoService.parceriaTelefone(meta.video)) {
+        contatoInfo.innerHTML = VideoService.parceriaContatoHtml(meta.video, { variant: 'info' });
+        contatoInfo.hidden = false;
+      } else {
+        contatoInfo.innerHTML = '';
+        contatoInfo.hidden = true;
+      }
+    }
 
     const sheet = document.getElementById('video-modal-sheet');
     if (sheet && meta.sheet) {
@@ -82,42 +115,87 @@ const VideoModal = {
           <div><dt>Categoria</dt><dd>${meta.sheet.categoria}</dd></div>
           <div><dt>Álbum</dt><dd>${meta.sheet.album}</dd></div>
           <div><dt>${meta.sheet.compositorLabel || 'Compositor'}</dt><dd>${meta.sheet.compositor}</dd></div>
+          ${meta.sheet.telefone ? `<div><dt>WhatsApp</dt><dd>${meta.sheet.telefone}</dd></div>` : ''}
         </dl>`;
     } else if (sheet) {
       sheet.innerHTML = '';
     }
 
     const catalog = Portal.videos || [];
+    const nextId = meta.next ? VideoService.id(meta.next) : '';
+    const relatedFiltered = (meta.related || []).filter(v => VideoService.id(v) !== nextId);
+
     const nextEl = document.getElementById('video-modal-next');
     if (nextEl && meta.next) {
-      const nid = VideoService.id(meta.next);
+      const isParceria = meta.next.tipo === 'parcerias';
       nextEl.innerHTML = `
         <p class="video-modal__related-title">Próximo vídeo</p>
-        <button type="button" class="video-modal__next-card" data-youtube-id="${nid}" data-video-title="${meta.next.titulo}">
-          <img src="${VideoService.thumbFor(meta.next)}" alt="${meta.next.titulo}" loading="lazy">
-          <span>${meta.next.titulo}</span>
+        <button type="button" class="video-modal__next-card${isParceria ? ' video-modal__next-card--parceria' : ''}" data-youtube-id="${nextId}" data-video-title="${meta.next.titulo}">
+          ${VideoService.thumbMarkup(meta.next, { modal: true })}
+          ${isParceria ? '' : `<span>${meta.next.titulo}</span>`}
         </button>`;
-      bindVideoCardThumbs(nextEl, catalog);
+      if (!isParceria) bindVideoCardThumbs(nextEl, catalog);
+      bindVideoCards(nextEl, catalog);
     } else if (nextEl) {
       nextEl.innerHTML = '';
     }
 
     const relatedEl = document.getElementById('video-modal-related');
-    if (relatedEl && meta.related?.length) {
+    if (relatedEl && relatedFiltered.length) {
+      const allParcerias = relatedFiltered.every(v => v.tipo === 'parcerias');
       relatedEl.innerHTML = `
         <p class="video-modal__related-title">Assistir também</p>
-        <div class="video-modal__related-grid">
-          ${meta.related.map(v => {
+        <div class="video-modal__related-grid${allParcerias ? ' video-modal__related-grid--parcerias' : ''}">
+          ${relatedFiltered.map(v => {
             const vid = VideoService.id(v);
-            return `<button type="button" class="video-modal__related-item" data-youtube-id="${vid}" data-video-title="${v.titulo}">
-              <img src="${VideoService.thumbFor(v)}" alt="${v.titulo}" loading="lazy">
-              <span>${v.titulo}</span>
+            const isParceria = v.tipo === 'parcerias';
+            return `<button type="button" class="video-modal__related-item${isParceria ? ' video-modal__related-item--parceria' : ''}" data-youtube-id="${vid}" data-video-title="${v.titulo}">
+              ${VideoService.thumbMarkup(v, { modal: true })}
+              ${isParceria ? '' : `<span>${v.titulo}</span>`}
             </button>`;
           }).join('')}
         </div>`;
-      bindVideoCardThumbs(relatedEl, catalog);
+      if (!allParcerias) bindVideoCardThumbs(relatedEl, catalog);
+      bindVideoCards(relatedEl, catalog);
     } else if (relatedEl) {
       relatedEl.innerHTML = '';
+    }
+  },
+
+  _ensureParceriaInfoEl() {
+    let el = document.getElementById('video-modal-parceria-info');
+    if (el) return el;
+
+    const desc = document.getElementById('video-modal-desc');
+    if (!desc) return null;
+
+    el = document.createElement('div');
+    el.id = 'video-modal-parceria-info';
+    el.className = 'video-modal__parceria-info-wrap';
+    el.hidden = true;
+    desc.insertAdjacentElement('afterend', el);
+    return el;
+  },
+
+  _renderParceriaContato(video) {
+    const wrap = document.querySelector('.video-modal__iframe-wrap');
+    if (!wrap) return;
+
+    let overlay = wrap.querySelector('.video-modal__parceria-contato');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'video-modal__parceria-contato-host';
+      wrap.appendChild(overlay);
+    }
+
+    if (video?.tipo === 'parcerias' && VideoService.parceriaTelefone(video)) {
+      overlay.innerHTML = VideoService.parceriaContatoHtml(video, { variant: 'overlay' });
+      overlay.hidden = false;
+      wrap.classList.add('video-modal__iframe-wrap--parceria');
+    } else {
+      overlay.innerHTML = '';
+      overlay.hidden = true;
+      wrap.classList.remove('video-modal__iframe-wrap--parceria');
     }
   },
 
@@ -125,6 +203,7 @@ const VideoModal = {
     const modal = document.getElementById('video-modal');
     this.openGeneration += 1;
     this.currentVideoId = null;
+    this._renderParceriaContato(null);
 
     const host = document.getElementById('video-player-host');
     if (host) {
@@ -141,9 +220,10 @@ const VideoModal = {
 };
 
 function openYoutube(id, videoOrMeta) {
-  const videoId = youtubeId(id);
+  const video = resolveVideoMeta(id, videoOrMeta);
+  const videoId = video ? VideoService.id(video) : (youtubeId(id) || id);
   if (!videoId) return;
-  VideoModal.open(videoId, resolveVideoMeta(videoId, videoOrMeta) || videoOrMeta);
+  VideoModal.open(videoId, video || videoOrMeta);
 }
 
 function resolveVideoMeta(videoId, videoOrMeta) {

@@ -105,7 +105,7 @@ http://localhost:3456
       "imagemFull": "assets/images/eventos/cidade/display/foto01.jpg"
     }
   ],
-  "louvores": ["Deus Não Falha", "Carta do Rei"],
+  "louvores": ["Deus de Israel", "Carta do Rei"],
   "videos": [{ "titulo": "Culto completo", "youtube": "ID_DO_YOUTUBE" }]
 }
 ```

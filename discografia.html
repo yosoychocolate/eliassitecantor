@@ -24,11 +24,17 @@
 
   <link rel="stylesheet" href="css/responsive.css">
 
+  <link rel="stylesheet" href="css/experience.css">
+
+  <link rel="stylesheet" href="css/videoteca.css?v=4.3">
+
   <link rel="stylesheet" href="css/premium.css">
 
   <link rel="stylesheet" href="css/agenda-bot.css">
 
   <link rel="stylesheet" href="css/background-music.css">
+
+  <link rel="stylesheet" href="css/ads.css">
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 
@@ -55,6 +61,8 @@
           <li><a href="discografia.html" class="nav__link active">Música</a></li>
 
           <li><a href="videoteca.html" class="nav__link">Videoteca</a></li>
+
+          <li><a href="videoteca.html#videoteca-parcerias-section" class="nav__link">Patrocínios</a></li>
 
           <li><a href="index.html#contato" class="nav__link">Contato</a></li>
 
@@ -87,6 +95,8 @@
       </div>
 
       <div id="discografia-grid"></div>
+
+      <aside class="ad-slot ad-slot--wide" data-ad-slot="discografia-mid" hidden aria-label="Publicidade"></aside>
 
     </div>
 
@@ -121,15 +131,45 @@
 
 
 
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <div class="video-modal__overlay"></div>
+    <div class="video-modal__content video-modal__content--cinema">
+      <button class="video-modal__close" aria-label="Fechar vídeo"><i class="fas fa-times"></i></button>
+      <div class="video-modal__layout">
+        <div class="video-modal__main">
+          <div class="video-modal__iframe-wrap">
+            <div id="video-player-host"></div>
+            <div id="video-modal-upnext" class="video-modal__upnext" aria-live="polite"></div>
+          </div>
+          <div class="video-modal__info">
+            <h3 id="video-modal-title"></h3>
+            <p id="video-modal-desc"></p>
+            <div id="video-modal-next"></div>
+            <div id="video-modal-related"></div>
+          </div>
+        </div>
+        <aside class="video-modal__aside">
+          <div id="video-modal-sheet"></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+
+
   <script src="js/ministry.js"></script>
 
   <script src="services/adapters/jsonAdapter.js"></script>
 
   <script src="services/contentService.js"></script>
 
+  <script src="js/portal/videoService.js?v=4.3"></script>
+
+  <script src="js/portal/videoModal.js?v=4.3"></script>
+
   <script src="js/portal/render-helpers.js"></script>
 
-  <script src="js/portal/render-media.js"></script>
+  <script src="js/portal/render-media.js?v=4.4"></script>
 
   <script src="js/player.js"></script>
 
@@ -137,9 +177,11 @@
 
   <script src="js/portal/agenda-bot.js"></script>
 
-  <script src="js/portal/background-music.js"></script>
+  <script src="js/portal/background-music.js?v=4.0"></script>
 
   <script src="js/main.js"></script>
+
+  <script src="js/portal/ads.js?v=1.0"></script>
 
   <script>
 

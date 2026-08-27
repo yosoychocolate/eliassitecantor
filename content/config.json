@@ -21,6 +21,38 @@
       "volume": 0.22,
       "loop": true,
       "autostart": true
+    },
+    "adsense": {
+      "enabled": false,
+      "clientId": "",
+      "excludePages": ["memorial", "admin", "tv"],
+      "slots": {
+        "home-mid": {
+          "slotId": "",
+          "format": "auto",
+          "fullWidthResponsive": true
+        },
+        "home-footer": {
+          "slotId": "",
+          "format": "auto",
+          "fullWidthResponsive": true
+        },
+        "discografia-mid": {
+          "slotId": "",
+          "format": "auto",
+          "fullWidthResponsive": true
+        },
+        "videoteca-mid": {
+          "slotId": "",
+          "format": "auto",
+          "fullWidthResponsive": true
+        },
+        "memoriais-mid": {
+          "slotId": "",
+          "format": "auto",
+          "fullWidthResponsive": true
+        }
+      }
     }
   },
   "versiculos": []

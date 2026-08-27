@@ -7,6 +7,7 @@ const BackgroundMusic = {
   _enabled: false,
   _config: null,
   _interactionBound: false,
+  _playingBeforeHide: false,
   _MUTED_KEY: 'bg-music-muted',
 
   init() {
@@ -34,6 +35,7 @@ const BackgroundMusic = {
     this._mountToggle();
     this._bindNowPlayingPause();
     this._bindVideoModalPause();
+    this._bindPageLifecycle();
 
     if (this._config.autostart !== false && !this._isMuted()) {
       this._tryAutostart();
@@ -128,8 +130,42 @@ const BackgroundMusic = {
     if (!this.audio) return;
     this.audio.pause();
     this._enabled = false;
-    if (userAction) localStorage.setItem(this._MUTED_KEY, '1');
+    if (userAction) {
+      localStorage.setItem(this._MUTED_KEY, '1');
+      this._playingBeforeHide = false;
+    }
     this._syncButton(false);
+  },
+
+  _onPageHidden() {
+    if (!this.audio) return;
+    if (!this.audio.paused) {
+      this._playingBeforeHide = true;
+      this.audio.pause();
+      this._enabled = false;
+      this._syncButton(false);
+    }
+  },
+
+  _onPageVisible() {
+    if (!this._playingBeforeHide || this._isMuted()) return;
+    this._playingBeforeHide = false;
+    this.play();
+  },
+
+  _bindPageLifecycle() {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this._onPageHidden();
+      else this._onPageVisible();
+    });
+
+    window.addEventListener('pagehide', () => {
+      if (!this.audio) return;
+      this.audio.pause();
+      this._enabled = false;
+      this._playingBeforeHide = false;
+      this._syncButton(false);
+    });
   },
 
   toggle() {
@@ -166,7 +202,7 @@ const BackgroundMusic = {
         this.audio.pause();
         this._wasPlaying = true;
         this._syncButton(false);
-      } else if (this._wasPlaying && !this._isMuted()) {
+      } else if (this._wasPlaying && !this._isMuted() && !document.hidden) {
         this._wasPlaying = false;
         this.play();
       }
