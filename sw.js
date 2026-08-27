@@ -1,4 +1,4 @@
-const CACHE = 'ministerio-v4.1';
+const CACHE = 'ministerio-v4.2';
 
 const PRECACHE = [
   './css/style.css',
@@ -47,6 +47,9 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
 
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+
+  /* CDN / YouTube / fontes — não interceptar (evita violação de connect-src no fetch do SW) */
+  if (url.origin !== self.location.origin) return;
 
   /* Páginas HTML: não interceptar — evita ERR_FAILED com redirects do servidor */
   if (e.request.mode === 'navigate' || e.request.destination === 'document') return;
