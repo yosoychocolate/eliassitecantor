@@ -9,7 +9,7 @@ const root = path.join(__dirname, '..');
 const siteUrl = (process.argv[2] || 'https://ministerioeliassilva.com.br').replace(/\/$/, '');
 const eventos = JSON.parse(fs.readFileSync(path.join(root, 'content/eventos.json'), 'utf8')).eventos;
 
-const staticPages = ['', '/memoriais.html', '/tv.html'];
+const staticPages = ['', '/memoriais.html', '/tv.html', '/videoteca.html', '/discografia.html'];
 const memorialPages = eventos
   .filter(e => e.slug && e.data)
   .map(e => `/memorial/${e.slug}`);
