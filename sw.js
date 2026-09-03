@@ -1,4 +1,4 @@
-const CACHE = 'ministerio-v4.2';
+const CACHE = 'ministerio-v4.3';
 
 const PRECACHE = [
   './css/style.css',

@@ -63,7 +63,7 @@ function dismissHomeOpening({ animated = true } = {}) {
   if (!opening || opening.classList.contains('is-dismissed')) return false;
 
   if (location.protocol === 'file:') {
-    window.location.href = 'http://localhost:3456/';
+    window.location.href = `${location.protocol === 'file:' ? 'http://localhost:5500' : location.origin}/`;
     return true;
   }
 

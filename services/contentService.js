@@ -250,10 +250,22 @@ const ContentService = {
     return `${this._basePath}${path.replace(/^\//, '')}`;
   },
 
+  isProductionHost() {
+    const siteUrl = this.getSnapshot()?.config?.siteUrl;
+    if (!siteUrl) return false;
+    try {
+      return location.hostname === new URL(siteUrl).hostname;
+    } catch {
+      return /ministerioeliassilva\.com\.br$/i.test(location.hostname);
+    }
+  },
+
   memorialUrl(slug) {
     const base = this._basePath;
     const siteUrl = this.getSnapshot().config?.siteUrl;
-    if (siteUrl) return `${siteUrl.replace(/\/$/, '')}/memorial/${slug}`;
+    if (siteUrl && this.isProductionHost()) {
+      return `${siteUrl.replace(/\/$/, '')}/memorial/${slug}`;
+    }
     return `${base}memorial.html?evento=${slug}`;
   },
 

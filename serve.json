@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/memorial/:slug", "destination": "/memorial.html?evento=:slug" },
+    { "source": "/memoriais/:slug", "destination": "/memorial.html?evento=:slug" }
+  ]
+}

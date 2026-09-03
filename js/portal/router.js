@@ -22,9 +22,11 @@ const PortalRouter = {
   },
 
   resolveBasePath() {
-    if (document.body.dataset.basePath !== undefined) {
-      return document.body.dataset.basePath;
-    }
-    return location.pathname.includes('/memoriais/') ? '../' : '';
+    const fromDataset = document.body.dataset.basePath;
+    if (fromDataset !== undefined && fromDataset !== '') return fromDataset;
+
+    if (/\/memorial\/[^/]+|\/memoriais\/[^/]+/.test(location.pathname)) return '/';
+    if (location.pathname.includes('/memoriais/')) return '../';
+    return '';
   }
 };
