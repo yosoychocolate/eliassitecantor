@@ -16,6 +16,22 @@ function renderVideoCardCompact(video) {
     </button>`;
 }
 
+function renderHeroPhoneLink(extraClass = '') {
+  const config = typeof ContentService !== 'undefined' ? ContentService.getSnapshot()?.config || {} : {};
+  const numero = typeof Ministry !== 'undefined' ? Ministry.telefoneExibicao(config) : '(11) 97047-2292';
+  const href = typeof Ministry !== 'undefined'
+    ? Ministry.whatsappHref(config, 'Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.')
+    : `https://wa.me/5511970472292`;
+  const cls = `videoteca-cinema__phone ${extraClass}`.trim();
+  return `<a href="${href}" class="${cls}" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="videoteca-cinema__phone-copy">
+      <span class="videoteca-cinema__phone-label">WhatsApp — Agenda</span>
+      <strong class="videoteca-cinema__phone-number">${numero}</strong>
+    </span>
+  </a>`;
+}
+
 function renderVideoFeatured() {
   const el = document.getElementById('videoteca-featured');
   if (!el) return;
@@ -36,6 +52,7 @@ function renderVideoFeatured() {
           <p class="videoteca-cinema__meta">${meta}</p>
         </div>
         <h2 class="videoteca-cinema__title videoteca-cinema__title--home">${featured.titulo}</h2>
+        ${renderHeroPhoneLink('videoteca-cinema__phone--inline')}
       </div>`
     : `<div class="videoteca-cinema__info container">
         ${featured.isNovo || featured.destaque ? `<span class="videoteca-cinema__badge">${label}</span>` : ''}
@@ -47,14 +64,17 @@ function renderVideoFeatured() {
 
   el.innerHTML = `
     <div class="videoteca-cinema${isHome ? ' videoteca-cinema--home' : ''}">
-      <button type="button" class="videoteca-cinema__screen" data-youtube-id="${id}" aria-label="Assistir ${featured.titulo}">
-        <span class="videoteca-cinema__media">
-          <img src="${thumb}" alt="${featured.titulo}" loading="eager" decoding="async">
-          <span class="videoteca-cinema__shade" aria-hidden="true"></span>
-          ${isHome ? `<span class="videoteca-cinema__caption"><span class="videoteca-cinema__caption-title">${featured.titulo}</span></span>` : ''}
-        </span>
-        <span class="videoteca-cinema__play"><i class="fas fa-play"></i> Assistir agora</span>
-      </button>
+      <div class="videoteca-cinema__stage">
+        <button type="button" class="videoteca-cinema__screen" data-youtube-id="${id}" aria-label="Assistir ${featured.titulo}">
+          <span class="videoteca-cinema__media">
+            <img src="${thumb}" alt="${featured.titulo}" loading="eager" decoding="async">
+            <span class="videoteca-cinema__shade" aria-hidden="true"></span>
+            ${isHome ? `<span class="videoteca-cinema__caption"><span class="videoteca-cinema__caption-title">${featured.titulo}</span></span>` : ''}
+          </span>
+          <span class="videoteca-cinema__play"><i class="fas fa-play"></i> Assistir agora</span>
+        </button>
+        ${isHome ? renderHeroPhoneLink('videoteca-cinema__phone--overlay') : ''}
+      </div>
       ${infoBlock}
     </div>`;
 

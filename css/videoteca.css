@@ -10,6 +10,105 @@
   background: #050505;
 }
 
+.videoteca-cinema__stage {
+  position: relative;
+}
+
+.videoteca-cinema__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.videoteca-cinema__phone i {
+  color: #25d366;
+  flex-shrink: 0;
+}
+
+.videoteca-cinema__phone-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.videoteca-cinema__phone-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.videoteca-cinema__phone-number {
+  font-size: clamp(1rem, 2.8vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.videoteca-cinema__phone--overlay {
+  position: absolute;
+  left: clamp(12px, 3vw, 28px);
+  bottom: clamp(14px, 3vw, 24px);
+  z-index: 4;
+  max-width: min(320px, calc(100% - 120px));
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 211, 102, 0.45);
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+.videoteca-cinema__phone--overlay i {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+.videoteca-cinema__phone--overlay .videoteca-cinema__phone-number {
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+}
+
+.videoteca-cinema__phone--overlay:hover {
+  transform: translateY(-2px);
+  border-color: #25d366;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
+.videoteca-cinema__phone--inline {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  background: rgba(37, 211, 102, 0.08);
+  justify-content: center;
+}
+
+.videoteca-cinema__phone--inline i {
+  font-size: 1.5rem;
+}
+
+.videoteca-cinema__phone--inline .videoteca-cinema__phone-number {
+  font-size: clamp(1.25rem, 5vw, 1.65rem);
+}
+
+@media (min-width: 769px) {
+  .videoteca-cinema__phone--inline {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoteca-cinema__phone--overlay {
+    display: none;
+  }
+}
+
 .videoteca-cinema__screen {
   display: block;
   width: 100%;

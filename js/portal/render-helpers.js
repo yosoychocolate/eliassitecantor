@@ -94,6 +94,12 @@ function updateConviteWhatsApp() {
   document.querySelectorAll('.agenda-phone-banner__link').forEach(el => {
     el.href = href;
   });
+  document.querySelectorAll('.videoteca-cinema__phone-number').forEach(el => {
+    el.textContent = numero;
+  });
+  document.querySelectorAll('.videoteca-cinema__phone').forEach(el => {
+    el.href = href;
+  });
 }
 
 
