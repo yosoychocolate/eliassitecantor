@@ -71,9 +71,17 @@ function renderVideoFeatured() {
             <span class="videoteca-cinema__shade" aria-hidden="true"></span>
             ${isHome ? `<span class="videoteca-cinema__caption"><span class="videoteca-cinema__caption-title">${featured.titulo}</span></span>` : ''}
           </span>
-          <span class="videoteca-cinema__play"><i class="fas fa-play"></i> Assistir agora</span>
+          ${isHome
+            ? `<span class="videoteca-cinema__play videoteca-cinema__play--mobile"><i class="fas fa-play"></i><span class="videoteca-cinema__play-text">Assistir agora</span></span>`
+            : `<span class="videoteca-cinema__play"><i class="fas fa-play"></i> Assistir agora</span>`}
         </button>
-        ${isHome ? renderHeroPhoneLink('videoteca-cinema__phone--overlay') : ''}
+        ${isHome ? `
+        <div class="videoteca-cinema__cta-row">
+          <button type="button" class="videoteca-cinema__play-btn" data-youtube-id="${id}" aria-label="Assistir ${featured.titulo}">
+            <i class="fas fa-play" aria-hidden="true"></i> Assistir agora
+          </button>
+          ${renderHeroPhoneLink('videoteca-cinema__phone--overlay')}
+        </div>` : ''}
       </div>
       ${infoBlock}
     </div>`;

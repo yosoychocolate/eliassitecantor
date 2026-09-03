@@ -118,11 +118,22 @@
 
         </ul>
 
-        <button class="nav__close" id="nav-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+        <div class="nav__contact">
+          <a href="https://wa.me/5511970472292" class="nav__whatsapp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <span class="nav__whatsapp-copy">
+              <span class="nav__whatsapp-label">WhatsApp — Agenda</span>
+              <strong class="nav__whatsapp-number">(11) 97047-2292</strong>
+            </span>
+          </a>
+        </div>
 
       </div>
 
-      <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+        <i class="fas fa-bars nav__toggle-icon nav__toggle-icon--menu" aria-hidden="true"></i>
+        <i class="fas fa-times nav__toggle-icon nav__toggle-icon--close" aria-hidden="true"></i>
+      </button>
 
     </nav>
 

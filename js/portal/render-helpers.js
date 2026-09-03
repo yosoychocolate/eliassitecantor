@@ -100,6 +100,12 @@ function updateConviteWhatsApp() {
   document.querySelectorAll('.videoteca-cinema__phone').forEach(el => {
     el.href = href;
   });
+  document.querySelectorAll('.nav__whatsapp').forEach(el => {
+    el.href = href;
+  });
+  document.querySelectorAll('.nav__whatsapp-number').forEach(el => {
+    el.textContent = numero;
+  });
 }
 
 

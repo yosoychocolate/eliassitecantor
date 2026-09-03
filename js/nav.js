@@ -25,12 +25,25 @@ function renderSiteNav(options = {}) {
             <li><a href="${isHome ? '#sobre' : prefix + 'index.html#sobre'}" class="nav__link">Sobre</a></li>
             <li><a href="${isHome ? '#agenda' : prefix + 'index.html#agenda'}" class="nav__link ${active === 'agenda' ? 'active' : ''}">Agenda</a></li>
             <li><a href="${prefix}memoriais.html" class="nav__link ${active === 'memoriais' ? 'active' : ''}">Memoriais</a></li>
-            <li><a href="${isHome ? '#discografia' : prefix + 'index.html#discografia'}" class="nav__link">Música</a></li>
-            <li><a href="${isHome ? '#convite' : prefix + 'index.html#convite'}" class="nav__link">Contato</a></li>
+            <li><a href="${prefix}discografia.html" class="nav__link">Música</a></li>
+            <li><a href="${prefix}videoteca.html" class="nav__link">Videoteca</a></li>
+            <li><a href="${prefix}videoteca.html#videoteca-parcerias-section" class="nav__link">Patrocínios</a></li>
+            <li><a href="${isHome ? '#contato' : prefix + 'index.html#contato'}" class="nav__link">Contato</a></li>
           </ul>
-          <button class="nav__close" id="nav-close" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
+          <div class="nav__contact">
+            <a href="https://wa.me/5511970472292" class="nav__whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span class="nav__whatsapp-copy">
+                <span class="nav__whatsapp-label">WhatsApp — Agenda</span>
+                <strong class="nav__whatsapp-number">(11) 97047-2292</strong>
+              </span>
+            </a>
+          </div>
         </div>
-        <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+          <i class="fas fa-bars nav__toggle-icon nav__toggle-icon--menu" aria-hidden="true"></i>
+          <i class="fas fa-times nav__toggle-icon nav__toggle-icon--close" aria-hidden="true"></i>
+        </button>
       </nav>
     </header>
   `;

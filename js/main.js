@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavLink();
   initImageFallbacks();
   initPWA();
+  if (typeof updateConviteWhatsApp === 'function') updateConviteWhatsApp();
 });
 
 function initPWA() {
@@ -43,7 +44,6 @@ function initPreloader() {
 function initNavigation() {
   const navMenu = document.getElementById('nav-menu');
   const navToggle = document.getElementById('nav-toggle');
-  const navClose = document.getElementById('nav-close');
   const navLinks = document.querySelectorAll('.nav__link');
   const header = document.getElementById('header');
 
@@ -55,23 +55,31 @@ function initNavigation() {
   }
 
   function openMenu() {
-    navMenu.classList.add('show');
+    navMenu?.classList.add('show');
     overlay.classList.add('active');
+    document.body.classList.add('nav-open');
     document.documentElement.classList.add('scroll-locked');
     document.body.classList.add('scroll-locked');
+    navToggle?.setAttribute('aria-expanded', 'true');
+    navToggle?.setAttribute('aria-label', 'Fechar menu');
   }
 
   function closeMenu() {
-    navMenu.classList.remove('show');
+    navMenu?.classList.remove('show');
     overlay.classList.remove('active');
+    document.body.classList.remove('nav-open');
     if (!document.querySelector('.video-modal.active')) {
       document.documentElement.classList.remove('scroll-locked');
       document.body.classList.remove('scroll-locked');
     }
+    navToggle?.setAttribute('aria-expanded', 'false');
+    navToggle?.setAttribute('aria-label', 'Abrir menu');
   }
 
-  navToggle?.addEventListener('click', openMenu);
-  navClose?.addEventListener('click', closeMenu);
+  navToggle?.addEventListener('click', () => {
+    if (navMenu?.classList.contains('show')) closeMenu();
+    else openMenu();
+  });
   overlay.addEventListener('click', closeMenu);
 
   navLinks.forEach(link => {

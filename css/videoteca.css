@@ -65,6 +65,77 @@
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 }
 
+.videoteca-cinema__cta-row {
+  display: none;
+}
+
+.videoteca-cinema__play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  border: none;
+  background: rgba(204, 0, 0, 0.92);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.videoteca-cinema__play-btn:hover {
+  transform: scale(1.03);
+  background: rgba(224, 0, 0, 0.96);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+}
+
+@media (min-width: 769px) {
+  .videoteca-cinema--home .videoteca-cinema__cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: min(92%, 720px);
+    pointer-events: none;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__cta-row > * {
+    pointer-events: auto;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__phone--overlay {
+    position: static;
+    left: auto;
+    bottom: auto;
+    max-width: none;
+    flex: 0 1 auto;
+    padding: 12px 16px;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__phone--overlay .videoteca-cinema__phone-number {
+    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play--mobile {
+    display: none;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__screen:hover .videoteca-cinema__play {
+    opacity: 0;
+  }
+}
+
 .videoteca-cinema__phone--overlay i {
   font-size: clamp(1.35rem, 3vw, 1.75rem);
 }
@@ -1191,6 +1262,7 @@ button.videoteca-card--compact {
     opacity: 1;
   }
 
+  .videoteca-cinema--home .videoteca-cinema__play--mobile,
   .videoteca-cinema--home .videoteca-cinema__play {
     width: 64px;
     height: 64px;
@@ -1203,9 +1275,14 @@ button.videoteca-card--compact {
     white-space: normal;
   }
 
+  .videoteca-cinema--home .videoteca-cinema__play--mobile i,
   .videoteca-cinema--home .videoteca-cinema__play i {
     font-size: 1.35rem;
     margin: 0;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play-text {
+    display: none;
   }
 
   .videoteca-card--compact {
