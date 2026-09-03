@@ -57,6 +57,24 @@ const Ministry = {
     });
   },
 
+  weekdayShort(dateStr) {
+    if (!dateStr) return '';
+    return this.parseDate(dateStr)
+      .toLocaleDateString('pt-BR', { weekday: 'short' })
+      .replace(/\.$/, '')
+      .toLowerCase();
+  },
+
+  agendaDateParts(dateStr) {
+    const d = dateStr ? this.parseDate(dateStr) : null;
+    if (!d) return { day: '—', weekday: '', month: 'breve' };
+    return {
+      day: String(d.getDate()).padStart(2, '0'),
+      weekday: this.weekdayShort(dateStr),
+      month: d.toLocaleDateString('pt-BR', { month: 'short' }).replace(/\.$/, '')
+    };
+  },
+
   telefoneExibicao(config = {}) {
     if (config.telefoneExibicao) return config.telefoneExibicao;
     const digits = String(config.whatsapp || '').replace(/\D/g, '');

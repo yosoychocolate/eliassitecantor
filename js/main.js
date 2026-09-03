@@ -44,6 +44,9 @@ function initPreloader() {
 function initNavigation() {
   const navMenu = document.getElementById('nav-menu');
   const navToggle = document.getElementById('nav-toggle');
+  if (!navToggle || navToggle.dataset.bound === '1') return;
+  navToggle.dataset.bound = '1';
+
   const navLinks = document.querySelectorAll('.nav__link');
   const header = document.getElementById('header');
 
@@ -54,6 +57,12 @@ function initNavigation() {
     document.body.appendChild(overlay);
   }
 
+  function setNavToggleIcon(isOpen) {
+    const icon = document.getElementById('nav-toggle-icon') || navToggle?.querySelector('i');
+    if (!icon) return;
+    icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+  }
+
   function openMenu() {
     navMenu?.classList.add('show');
     overlay.classList.add('active');
@@ -62,6 +71,7 @@ function initNavigation() {
     document.body.classList.add('scroll-locked');
     navToggle?.setAttribute('aria-expanded', 'true');
     navToggle?.setAttribute('aria-label', 'Fechar menu');
+    setNavToggleIcon(true);
   }
 
   function closeMenu() {
@@ -74,9 +84,12 @@ function initNavigation() {
     }
     navToggle?.setAttribute('aria-expanded', 'false');
     navToggle?.setAttribute('aria-label', 'Abrir menu');
+    setNavToggleIcon(false);
   }
 
-  navToggle?.addEventListener('click', () => {
+  navToggle?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (navMenu?.classList.contains('show')) closeMenu();
     else openMenu();
   });

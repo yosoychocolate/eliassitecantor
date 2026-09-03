@@ -136,12 +136,14 @@ function renderAgenda() {
   }
 
   el.innerHTML = phoneBanner + upcoming.map(ev => {
-    const d = Ministry.parseDate(ev.data);
-    const day = d ? String(d.getDate()).padStart(2, '0') : '—';
-    const month = d ? d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '') : 'breve';
+    const { day, weekday, month } = Ministry.agendaDateParts(ev.data);
     return `
       <article class="agenda__item">
-        <div class="agenda__date"><span class="agenda__day">${day}</span><span class="agenda__month">${month}</span></div>
+        <div class="agenda__date">
+          <span class="agenda__day">${day}</span>
+          <span class="agenda__weekday">${weekday}</span>
+          <span class="agenda__month">${month}</span>
+        </div>
         <div class="agenda__info"><h3>${ev.cidade} — ${ev.estado}</h3><p>${ev.titulo} · ${ev.tipo || ''}</p></div>
         <span class="agenda__badge">Confirmado</span>
       </article>`;

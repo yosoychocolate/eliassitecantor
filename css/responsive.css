@@ -12,6 +12,14 @@
     backdrop-filter: none;
     padding: 0;
     display: block !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav__menu .nav__link {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
   }
 
   .nav__list {
@@ -34,11 +42,17 @@
 
   .nav__toggle,
   .nav__close {
-    display: none;
+    display: none !important;
   }
 
   .nav__contact {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
   }
 }
 
@@ -189,7 +203,7 @@
   }
 }
 
-/* ---- Menu mobile — painel sólido, desliza da esquerda ---- */
+/* ---- Menu mobile — painel desliza da direita para esquerda ---- */
 @media screen and (max-width: 1023px) {
   .nav-overlay {
     z-index: 10040;
@@ -200,6 +214,14 @@
 
   .header {
     z-index: 10070;
+    top: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    height: calc(var(--header-height) + env(safe-area-inset-top, 0px));
+  }
+
+  .header .nav.container {
+    height: var(--header-height);
+    align-items: center;
   }
 
   .nav__toggle {
@@ -214,6 +236,7 @@
     border-radius: 50%;
     background: transparent;
     z-index: 10080;
+    margin-top: 2px;
     transition: background 0.25s ease, border-color 0.25s ease;
   }
 
@@ -222,57 +245,34 @@
     border-color: rgba(212, 175, 55, 0.35);
   }
 
-  .nav__toggle-icon {
-    position: absolute;
+  #nav-toggle-icon {
     font-size: 1.25rem;
     line-height: 1;
-    transition: opacity 0.22s ease, transform 0.28s ease;
-  }
-
-  .nav__toggle-icon--menu {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-
-  .nav__toggle-icon--close {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
     pointer-events: none;
-  }
-
-  body.nav-open .nav__toggle-icon--menu {
-    opacity: 0;
-    transform: rotate(90deg) scale(0.5);
-    pointer-events: none;
-  }
-
-  body.nav-open .nav__toggle-icon--close {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-    pointer-events: auto;
   }
 
   .nav__menu {
     z-index: 10050;
-    left: 0;
-    right: auto;
+    top: 0;
+    left: auto !important;
+    right: 0 !important;
     width: min(100%, 360px);
     max-width: none;
     height: 100dvh;
     padding:
-      calc(var(--header-height) + 16px)
+      calc(var(--header-height) + env(safe-area-inset-top, 0px) + 16px)
       max(20px, env(safe-area-inset-right))
       max(24px, env(safe-area-inset-bottom))
       max(20px, env(safe-area-inset-left));
     background: #080808;
     backdrop-filter: none;
-    transform: translateX(-100%);
-    transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(100%);
+    transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1) !important;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    box-shadow: 8px 0 40px rgba(0, 0, 0, 0.55);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.55);
   }
 
   .nav__menu.show {
@@ -292,7 +292,7 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     opacity: 0;
-    transform: translateX(-18px);
+    transform: translateX(20px);
   }
 
   .nav__menu.show .nav__link {
@@ -315,7 +315,7 @@
   @keyframes nav-link-in {
     from {
       opacity: 0;
-      transform: translateX(-18px);
+      transform: translateX(20px);
     }
     to {
       opacity: 1;
@@ -344,6 +344,7 @@
   }
 
   .nav__contact {
+    display: block;
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid rgba(212, 175, 55, 0.2);

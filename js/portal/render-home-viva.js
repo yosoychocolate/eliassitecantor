@@ -70,12 +70,15 @@ function dismissHomeOpening({ animated = true } = {}) {
   document.body.classList.add('portal-active');
   document.body.classList.remove('home-opening-active');
   sessionStorage.setItem('portal-entered', '1');
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
 
   opening.classList.add('is-leaving');
   if (animated) {
     setTimeout(() => {
       opening.classList.add('is-dismissed');
       window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
     }, 700);
   } else {
     opening.classList.add('is-dismissed');
@@ -92,7 +95,11 @@ function initHomeOpening() {
   if (sessionStorage.getItem('portal-entered')) {
     opening.classList.add('is-dismissed');
     document.body.classList.add('portal-active');
-    window.scrollTo(0, 0);
+    document.body.classList.remove('home-opening-active');
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+    });
     return;
   }
 
@@ -181,8 +188,8 @@ function renderProximaMinistracao() {
   }
 
   const d = Ministry.parseDate(ev.data);
-  const day = d.getDate();
-  const month = d.toLocaleDateString('pt-BR', { month: 'long' });
+  const { day, weekday, month } = Ministry.agendaDateParts(ev.data);
+  const monthLong = d.toLocaleDateString('pt-BR', { month: 'long' });
   const year = d.getFullYear();
 
   el.innerHTML = `
@@ -191,7 +198,8 @@ function renderProximaMinistracao() {
         <article class="home-evento__card">
           <div class="home-evento__date-block">
             <span class="home-evento__day">${day}</span>
-            <span class="home-evento__month">${month}</span>
+            <span class="home-evento__weekday">${weekday}</span>
+            <span class="home-evento__month">${monthLong}</span>
             <span class="home-evento__year">${year}</span>
           </div>
           <div class="home-evento__body">
@@ -239,12 +247,14 @@ function renderAgendaSection() {
   }
 
   el.innerHTML = phoneBanner + upcoming.map(ev => {
-    const d = Ministry.parseDate(ev.data);
-    const day = d ? String(d.getDate()).padStart(2, '0') : '—';
-    const month = d ? d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '') : 'breve';
+    const { day, weekday, month } = Ministry.agendaDateParts(ev.data);
     return `
       <article class="agenda__item">
-        <div class="agenda__date"><span class="agenda__day">${day}</span><span class="agenda__month">${month}</span></div>
+        <div class="agenda__date">
+          <span class="agenda__day">${day}</span>
+          <span class="agenda__weekday">${weekday}</span>
+          <span class="agenda__month">${month}</span>
+        </div>
         <div class="agenda__info"><h3>${ev.cidade} — ${ev.estado}</h3><p>${ev.titulo}${ev.tipo ? ` · ${ev.tipo}` : ''}</p></div>
         <span class="agenda__badge">Confirmado</span>
       </article>`;

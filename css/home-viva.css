@@ -435,6 +435,16 @@ body[data-page="home"].portal-active #main-content {
   color: var(--color-white);
 }
 
+.home-evento__weekday {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--color-gold);
+  margin-top: 4px;
+}
+
 .home-evento__month {
   display: block;
   font-size: 0.78rem;
@@ -889,7 +899,7 @@ body[data-page="home"].portal-active #main-content {
 }
 
 body[data-page="home"].portal-active #lancamentos {
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + env(safe-area-inset-top, 0px) - 4px);
 }
 
 #lancamentos .videoteca-cinema__info--compact {

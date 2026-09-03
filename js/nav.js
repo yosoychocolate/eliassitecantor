@@ -41,8 +41,7 @@ function renderSiteNav(options = {}) {
           </div>
         </div>
         <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
-          <i class="fas fa-bars nav__toggle-icon nav__toggle-icon--menu" aria-hidden="true"></i>
-          <i class="fas fa-times nav__toggle-icon nav__toggle-icon--close" aria-hidden="true"></i>
+          <i class="fas fa-bars" id="nav-toggle-icon" aria-hidden="true"></i>
         </button>
       </nav>
     </header>
@@ -81,5 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ministry: body.dataset.navMinistry !== 'false'
     });
     renderSiteFooter(body.dataset.navBase || '');
+    if (typeof initNavigation === 'function') initNavigation();
   }
 });

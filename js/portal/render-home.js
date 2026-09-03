@@ -8,6 +8,8 @@ async function renderSite() {
 
   await ContentService.init('');
 
+  if (typeof SearchService !== 'undefined') SearchService.clearCache();
+
 
 
   if (!ContentService.getSnapshot().videos?.length) {

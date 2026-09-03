@@ -213,6 +213,10 @@ ul {
   right: 0;
 }
 
+.nav__contact {
+  display: none;
+}
+
 .nav__list {
   display: flex;
   flex-direction: column;
@@ -243,6 +247,9 @@ ul {
   color: var(--color-white);
   z-index: 10;
   transition: color var(--transition);
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .nav__toggle:hover,
@@ -1079,6 +1086,16 @@ ul {
   font-weight: 700;
   color: var(--color-gold);
   line-height: 1;
+}
+
+.agenda__weekday {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--color-white);
+  margin-top: 2px;
 }
 
 .agenda__month {

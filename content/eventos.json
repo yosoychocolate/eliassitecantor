@@ -346,20 +346,6 @@
       "coords": { "x": 72, "y": 50 }
     },
     {
-      "slug": "bonito-verdade-vida-set-2026",
-      "titulo": "Igreja Verdade e Vida",
-      "cidade": "Bonito",
-      "estado": "BA",
-      "data": "2026-09-13",
-      "tipo": "Culto",
-      "pastor": "Pr. Felipe",
-      "descricao": "Ministração na Igreja Verdade e Vida — Bonito/BA.",
-      "realizado": false,
-      "videos": [],
-      "galeria": [],
-      "coords": { "x": 72, "y": 50 }
-    },
-    {
       "slug": "utinga-ba-set-2026",
       "titulo": "Igrejas Evangélicas de Utinga",
       "cidade": "Utinga",

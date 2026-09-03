@@ -95,18 +95,24 @@
 }
 
 @media (min-width: 769px) {
+  body[data-page="home"].portal-active .videoteca-cinema--home .videoteca-cinema__media {
+    aspect-ratio: unset;
+    height: clamp(420px, calc(100svh - var(--header-height) - env(safe-area-inset-top, 0px) - 40px), 720px);
+  }
+
   .videoteca-cinema--home .videoteca-cinema__cta-row {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 16px;
     position: absolute;
     left: 50%;
     top: 50%;
+    bottom: auto;
     transform: translate(-50%, -50%);
-    z-index: 5;
-    width: min(92%, 720px);
+    z-index: 8;
+    width: min(94%, 780px);
     pointer-events: none;
   }
 
@@ -124,7 +130,7 @@
   }
 
   .videoteca-cinema--home .videoteca-cinema__phone--overlay .videoteca-cinema__phone-number {
-    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
   }
 
   .videoteca-cinema--home .videoteca-cinema__play--mobile {
@@ -175,7 +181,55 @@
 }
 
 @media (max-width: 768px) {
+  body[data-page="home"].portal-active .videoteca-cinema--home .videoteca-cinema__media {
+    aspect-ratio: unset;
+    height: clamp(240px, calc(100svh - var(--header-height) - env(safe-area-inset-top, 0px) - 180px), 420px);
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__cta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    z-index: 8;
+    width: min(calc(100% - 24px), 360px);
+    pointer-events: none;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__cta-row > * {
+    pointer-events: auto;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 0.82rem;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__phone--overlay {
+    display: inline-flex;
+    position: static;
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+
   .videoteca-cinema__phone--overlay {
+    display: none;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__play--mobile,
+  .videoteca-cinema--home .videoteca-cinema__screen .videoteca-cinema__play {
+    display: none !important;
+  }
+
+  .videoteca-cinema--home .videoteca-cinema__phone--inline {
     display: none;
   }
 }
@@ -1264,24 +1318,7 @@ button.videoteca-card--compact {
 
   .videoteca-cinema--home .videoteca-cinema__play--mobile,
   .videoteca-cinema--home .videoteca-cinema__play {
-    width: 64px;
-    height: 64px;
-    padding: 0;
-    border-radius: 50%;
-    justify-content: center;
-    font-size: 0;
-    gap: 0;
-    letter-spacing: 0;
-    white-space: normal;
-  }
-
-  .videoteca-cinema--home .videoteca-cinema__play--mobile i,
-  .videoteca-cinema--home .videoteca-cinema__play i {
-    font-size: 1.35rem;
-    margin: 0;
-  }
-
-  .videoteca-cinema--home .videoteca-cinema__play-text {
+    /* CTAs ficam na .videoteca-cinema__cta-row */
     display: none;
   }
 
