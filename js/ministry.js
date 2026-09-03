@@ -57,6 +57,21 @@ const Ministry = {
     });
   },
 
+  telefoneExibicao(config = {}) {
+    if (config.telefoneExibicao) return config.telefoneExibicao;
+    const digits = String(config.whatsapp || '').replace(/\D/g, '');
+    if (digits.length >= 12 && digits.startsWith('55')) {
+      return `(${digits.slice(2, 4)}) ${digits.slice(4, 9)}-${digits.slice(9)}`;
+    }
+    return digits;
+  },
+
+  whatsappHref(config = {}, message = '') {
+    const phone = String(config.whatsapp || '5511970472292').replace(/\D/g, '');
+    const base = `https://wa.me/${phone}`;
+    return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+  },
+
   groupByYear(eventos) {
     const map = {};
     eventos.forEach(ev => {

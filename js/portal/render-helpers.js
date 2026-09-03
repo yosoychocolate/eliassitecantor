@@ -71,17 +71,29 @@ function initVideoModalClose() {
 
 
 function updateConviteWhatsApp() {
+  const config = typeof ContentService !== 'undefined'
+    ? ContentService.getSnapshot()?.config || {}
+    : {};
+  const msg = 'Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.';
+  const href = typeof Ministry !== 'undefined'
+    ? Ministry.whatsappHref(config, msg)
+    : `https://wa.me/${config.whatsapp || '5511970472292'}?text=${encodeURIComponent(msg)}`;
+  const numero = typeof Ministry !== 'undefined'
+    ? Ministry.telefoneExibicao(config)
+    : (config.telefoneExibicao || '(11) 97047-2292');
 
-  const btn = document.getElementById('convite-whatsapp');
+  document.querySelectorAll('.footer-legacy__whatsapp, #convite-whatsapp').forEach(btn => {
+    btn.href = href;
+    const numEl = btn.querySelector('.footer-legacy__whatsapp-number');
+    if (numEl) numEl.textContent = numero;
+  });
 
-  if (!btn) return;
-
-  const msg = encodeURIComponent('Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.');
-
-  const phone = ContentService.getSnapshot()?.config?.whatsapp || '5511970472292';
-
-  btn.href = `https://wa.me/${phone}?text=${msg}`;
-
+  document.querySelectorAll('.agenda-phone-banner__number').forEach(el => {
+    el.textContent = numero;
+  });
+  document.querySelectorAll('.agenda-phone-banner__link').forEach(el => {
+    el.href = href;
+  });
 }
 
 

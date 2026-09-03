@@ -116,13 +116,26 @@ function renderAgenda() {
   const el = document.getElementById('agenda-list');
   if (!el) return;
 
+  const config = ContentService.getSnapshot()?.config || {};
+  const numero = Ministry.telefoneExibicao(config);
+  const waHref = Ministry.whatsappHref(config, 'Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.');
+  const phoneBanner = `
+    <div class="agenda-phone-banner">
+      <span class="agenda-phone-banner__label">Agenda — fale direto com a equipe</span>
+      <a href="${waHref}" class="agenda-phone-banner__link" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="agenda-phone-banner__number">${numero}</span>
+      </a>
+      <p class="agenda-phone-banner__hint">Toque no número para abrir o WhatsApp</p>
+    </div>`;
+
   const upcoming = getAgendaEventos();
   if (!upcoming.length) {
-    el.innerHTML = `<div class="agenda__empty"><p>Novas datas em preparação.</p><a href="#convite" class="btn btn--outline">Solicitar Agenda</a></div>`;
+    el.innerHTML = `${phoneBanner}<div class="agenda__empty"><p>Novas datas em preparação.</p><a href="#convite" class="btn btn--outline">Solicitar Agenda</a></div>`;
     return;
   }
 
-  el.innerHTML = upcoming.map(ev => {
+  el.innerHTML = phoneBanner + upcoming.map(ev => {
     const d = Ministry.parseDate(ev.data);
     const day = d ? String(d.getDate()).padStart(2, '0') : '—';
     const month = d ? d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '') : 'breve';

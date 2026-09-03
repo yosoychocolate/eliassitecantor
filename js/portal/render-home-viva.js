@@ -155,9 +155,10 @@ function renderProximaMinistracao() {
   if (!el) return;
 
   const ev = getAgendaEventos().find(e => e.data) || null;
-  const phone = ContentService.getSnapshot()?.config?.whatsapp || '5511970472292';
-  const waMsg = encodeURIComponent(`Olá! Gostaria de informações sobre a ministração${ev?.cidade ? ` em ${ev.cidade}` : ''}.`);
-  const waHref = `https://wa.me/${phone}?text=${waMsg}`;
+  const config = ContentService.getSnapshot()?.config || {};
+  const numero = Ministry.telefoneExibicao(config);
+  const waMsg = `Olá! Gostaria de informações sobre a ministração${ev?.cidade ? ` em ${ev.cidade}` : ''}.`;
+  const waHref = Ministry.whatsappHref(config, waMsg);
 
   if (!ev?.data) {
     el.innerHTML = `
@@ -170,7 +171,7 @@ function renderProximaMinistracao() {
               <p class="home-evento__empty">Novas agendas serão divulgadas em breve.</p>
               <p class="home-evento__hint">Deseja receber o ministério em sua igreja ou evento?</p>
               <a href="${waHref}" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> Solicitar informações
+                <i class="fab fa-whatsapp"></i> ${numero}
               </a>
             </div>
           </article>
@@ -198,7 +199,7 @@ function renderProximaMinistracao() {
             <h2 class="home-evento__city">${ev.cidade}/${ev.estado}</h2>
             <p class="home-evento__title">${ev.titulo}${ev.tipo ? ` · ${ev.tipo}` : ''}</p>
             <a href="${waHref}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-whatsapp"></i> Solicitar informações
+              <i class="fab fa-whatsapp"></i> ${numero}
             </a>
             <a href="#agenda" class="home-evento__more">Ver agenda completa →</a>
           </div>
@@ -211,23 +212,33 @@ function renderAgendaSection() {
   const el = document.getElementById('agenda-list');
   if (!el) return;
 
+  const config = ContentService.getSnapshot()?.config || {};
+  const numero = Ministry.telefoneExibicao(config);
+  const waHref = Ministry.whatsappHref(config, 'Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.');
+  const phoneBanner = `
+    <div class="agenda-phone-banner">
+      <span class="agenda-phone-banner__label">Agenda — fale direto com a equipe</span>
+      <a href="${waHref}" class="agenda-phone-banner__link" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="agenda-phone-banner__number">${numero}</span>
+      </a>
+      <p class="agenda-phone-banner__hint">Toque no número para abrir o WhatsApp</p>
+    </div>`;
+
   const upcoming = getAgendaEventos();
-  const phone = ContentService.getSnapshot()?.config?.whatsapp || '5511970472292';
-  const waMsg = encodeURIComponent('Olá! Gostaria de solicitar a agenda do Ministério Elias Silva.');
-  const waHref = `https://wa.me/${phone}?text=${waMsg}`;
 
   if (!upcoming.length) {
-    el.innerHTML = `
+    el.innerHTML = `${phoneBanner}
       <div class="agenda__empty">
         <p>Novas datas em preparação.</p>
         <a href="${waHref}" class="btn btn--outline" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> WhatsApp
+          <i class="fab fa-whatsapp"></i> ${numero}
         </a>
       </div>`;
     return;
   }
 
-  el.innerHTML = upcoming.map(ev => {
+  el.innerHTML = phoneBanner + upcoming.map(ev => {
     const d = Ministry.parseDate(ev.data);
     const day = d ? String(d.getDate()).padStart(2, '0') : '—';
     const month = d ? d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '') : 'breve';
@@ -240,7 +251,7 @@ function renderAgendaSection() {
   }).join('') + `
     <p class="home-agenda__cta">
       <a href="${waHref}" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i> Solicitar agenda
+        <i class="fab fa-whatsapp"></i> ${numero}
       </a>
     </p>`;
 }
