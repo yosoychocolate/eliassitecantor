@@ -387,34 +387,19 @@
       "coords": { "x": 68, "y": 28 }
     },
     {
-      "slug": "campo-grande-ms",
-      "titulo": "Congresso de Jovens",
-      "cidade": "Campo Grande",
-      "estado": "MS",
-      "data": "2026-11-15",
-      "tipo": "Congresso",
-      "descricao": "",
-      "videos": [],
-      "galeria": [],
-      "coords": {
-        "x": 38,
-        "y": 68
-      }
-    },
-    {
-      "slug": "recife-pe",
-      "titulo": "Cruzada Evangelística",
-      "cidade": "Recife",
-      "estado": "PE",
+      "slug": "redencao-ma-set-2026",
+      "titulo": "Vinde Adorai no Templo",
+      "cidade": "Redenção",
+      "estado": "MA",
       "data": "2026-09-20",
-      "tipo": "Cruzada",
-      "descricao": "",
+      "tipo": "Pentecostes",
+      "pastor": "Pr. Samir Barreto",
+      "local": "Assembleia de Deus Redenção",
+      "descricao": "Pentecostes — Nossa Identidade: Vinde Adorai no Templo.\n\nMinistração de Elias Silva em 20/09.\n\nAssembleia de Deus Redenção — Pr. Samir Barreto\nRua 4, nº 23 — Redenção/MA\n\nProgramação geral: 18 a 20 de setembro.",
+      "realizado": false,
       "videos": [],
       "galeria": [],
-      "coords": {
-        "x": 78,
-        "y": 38
-      }
+      "coords": { "x": 67, "y": 30 }
     }
   ]
 }
