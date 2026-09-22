@@ -314,7 +314,7 @@
       "data": "2026-09-05",
       "tipo": "Show",
       "descricao": "Ministração com banda na praça — Cambuquira/MG.",
-      "realizado": false,
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 58, "y": 63 }
@@ -327,7 +327,7 @@
       "data": "2026-09-11",
       "tipo": "Grande Cruzada Evangelística",
       "descricao": "Grande cruzada evangelística — sexta-feira, 11 de setembro.",
-      "realizado": false,
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 73, "y": 49 }
@@ -340,7 +340,7 @@
       "data": "2026-09-12",
       "tipo": "Show",
       "descricao": "Ministração em Bonito/BA.",
-      "realizado": false,
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 72, "y": 50 }
@@ -353,7 +353,7 @@
       "data": "2026-09-13",
       "tipo": "Culto",
       "descricao": "Ministração com as igrejas evangélicas de Utinga/BA.",
-      "realizado": false,
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 74, "y": 47 }
@@ -367,7 +367,7 @@
       "tipo": "30 Anos da Igreja",
       "pastor": "Pr. Erivaldo de Jesus",
       "descricao": "Celebração dos 30 anos da Igreja Quadrangular Jardim Talismã na Itinga — Lauro de Freitas/BA.",
-      "realizado": false,
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 75, "y": 52 }
@@ -380,11 +380,40 @@
       "data": "2026-09-19",
       "tipo": "Cruzada Evangelística",
       "pastor": "Pr. Samy Barreto",
-      "descricao": "19 e 20 de setembro — Quadra Poliesportiva do Filipinho, Av. Urbano Santos, Filipinho/São Luís-MA.\n\nContatos: Kevin (98) 98752-0585 · Laudiane (98) 98801-6084",
-      "realizado": false,
+      "local": "Quadra Poliesportiva do Filipinho",
+      "descricao": "19 e 20 de setembro de 2026.\n\nQuadra Poliesportiva do Filipinho — Av. Urbano Santos, Filipinho — São Luís/MA\n\nPr. Samy Barreto — Assembleia de Deus Área 21 IADESL\n\nContatos: Kevin (98) 98752-0585 · Laudiane (98) 98801-6084",
+      "realizado": true,
       "videos": [],
       "galeria": [],
       "coords": { "x": 68, "y": 28 }
+    },
+    {
+      "slug": "paulino-neves-ma-set-2026",
+      "titulo": "Assembleia de Deus (CEADEMA)",
+      "cidade": "Paulino Neves",
+      "estado": "MA",
+      "data": "2026-09-26",
+      "tipo": "Inauguração do templo · Cruzadas (26 e 27/09)",
+      "local": "Riacho do Meio do Cezarino",
+      "descricao": "Inauguração do templo da Assembleia de Deus (CEADEMA), em Riacho do Meio do Cezarino — Paulino Neves/MA.\n\nCruzadas evangelísticas nos dias 26 e 27 de setembro de 2026.",
+      "realizado": false,
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 72, "y": 22 }
+    },
+    {
+      "slug": "camamu-ba-dez-2026",
+      "titulo": "Igreja Pentecostal Buscai ao Senhor Enquanto se Pode Achar",
+      "cidade": "Camamu",
+      "estado": "BA",
+      "data": "2026-12-30",
+      "tipo": "Ministração (30 e 31/12)",
+      "pastor": "Pr. Adelar Proença Ribeiro",
+      "descricao": "Programação nos dias 30 e 31 de dezembro de 2026.\n\nIgreja Pentecostal Buscai ao Senhor Enquanto se Pode Achar — Camamu/BA\n\nPr. Adelar Proença Ribeiro\n\nContato: (54) 99959-8087",
+      "realizado": false,
+      "videos": [],
+      "galeria": [],
+      "coords": { "x": 76, "y": 54 }
     }
   ]
 }
